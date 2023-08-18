@@ -1,9 +1,10 @@
 /********** Template CSS **********/
 :root {
-    --primary: #16D5FF;
+    --primary: orange;
     --secondary: #999999;
     --light: #F2F8FE;
     --dark: #111111;
+    --back: #0e1541;
 }
 
 .back-to-top {
@@ -108,7 +109,7 @@ h6,
 }
 
 @media (max-width: 991.98px) {
-    .navbar .navbar-nav .nav-link  {
+    .navbar .navbar-nav .nav-link {
         margin-right: 0;
         padding: 10px 0;
     }
@@ -349,4 +350,107 @@ h6,
 
 .footer .copyright a:hover {
     color: var(--dark);
+}
+
+.dash-vertical-menu {
+    width: 200px;
+
+    /* Set a width if you like */
+}
+
+.dash-vertical-menu ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    background-color: #020720;
+    padding-left: 30px;
+
+}
+
+.dash-vertical-menu ul li {}
+
+
+.dash-vertical-menu ul li a {
+    /* Grey background color */
+    color: var(--light);
+    display: flex;
+    /* Black text color */
+    /* Make the links appear below each other */
+    padding: 12px;
+    /* Add some padding */
+    text-decoration: none;
+    /* Remove underline from links */
+}
+
+.dash-vertical-menu ul li a:hover {
+    /* background-color: #ccc; */
+    color: var(--primary);
+    /* Dark grey background on mouse-over */
+}
+
+.dash-vertical-menu ul li a.active {
+    /* background-color: var(--primary); */
+    /* Add a green color to the "active/current" link */
+    color: var(--primary);
+}
+
+.dash-material-icons.orange600 {
+    /* color: #FB8C00; */
+}
+
+.dashboard-content-box {
+    border: 1px solid var(--primary);
+    padding: 10px;
+}
+
+.bg-white {
+    background-color: #020720 !important
+}
+
+.navbar .navbar-nav .nav-link {
+    color: var(--light);
+}
+
+body {
+    background-color: #080f32 !important
+}
+
+.bg-light {
+    background-color: #040a27 !important;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-light {
+    color: var(--light) !important;
+
+}
+
+.btn.btn-primary {
+    color: #000;
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.service-item.bg-white::after {
+    border-color: transparent transparent var(--primary) transparent;
+}
+
+.accordion .accordion-body {
+    padding: 15px 0 0 0;
+    background: #020720;
+    border: 1px solid var(--primary);
+    padding: 10px;
+}
+
+.accordion .accordion-button {
+    background: var(--light);
+    border-radius: 2px;
+}
+
+.accordion .accordion-button {
+    background: #020720;
+    border-radius: 0px;
 }

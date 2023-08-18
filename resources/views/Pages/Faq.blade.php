@@ -1,3 +1,5 @@
+@section('PageTitle', 'Faq')
+
 @extends('layouts.default')
 @section('content')
 
@@ -5,7 +7,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6">FAQs</h1>
+                <h1 class="display-6 text-primary">FAQs</h1>
                 <p class="text-primary fs-5 mb-5">Frequently Asked Questions</p>
             </div>
             <div class="row justify-content-center">

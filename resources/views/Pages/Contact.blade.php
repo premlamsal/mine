@@ -1,3 +1,5 @@
+@section('PageTitle', 'Contact')
+
 @extends('layouts.default')
 @section('content')
 
@@ -6,7 +8,7 @@
         <div class="container">
             <div class="row g-5 mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="col-lg-6">
-                    <h1 class="display-6">Contact Us</h1>
+                    <h1 class="display-6 text-primary">Contact Us</h1>
                     <p class="text-primary fs-5 mb-0">If You Have Any Query, Please Contact Us</p>
                 </div>
                 <div class="col-lg-6 text-lg-end">
@@ -16,13 +18,13 @@
             <div class="row g-5">
                 <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <p class="mb-2">Our office:</p>
-                    <h4>123 Street, New York, USA</h4>
+                    <h4 class="text-light">123 Street, New York, USA</h4>
                     <hr class="w-100">
                     <p class="mb-2">Call us:</p>
-                    <h4>+012 345 6789</h4>
+                    <h4 class="text-light">+012 345 6789</h4>
                     <hr class="w-100">
                     <p class="mb-2">Mail us:</p>
-                    <h4>info@example.com</h4>
+                    <h4 class="text-light">info@example.com</h4>
                     <hr class="w-100">
                     <p class="mb-2">Follow us:</p>
                     <div class="d-flex pt-2">

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,3 +49,22 @@ Route::get('/service', function () {
 Route::get('/token', function () {
     return view('Pages/Token');
 });
+
+
+
+Route::name('user.')->prefix('user')->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::get('/dashboard', [UserPageController::class, 'dashboard'])->name('dashboard');
+        Route::get('purchase', [UserPageController::class, 'purchase'])->name('purchase');
+        Route::get('withdraw', [UserPageController::class, 'withdraw'])->name('withdraw');
+        Route::get('referral', [UserPageController::class, 'referral'])->name('referral');
+        Route::get('settings', [UserPageController::class, 'settings'])->name('settings');
+    });
+});
+
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
+Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout');

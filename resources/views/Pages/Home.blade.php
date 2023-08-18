@@ -1,3 +1,4 @@
+@section('PageTitle', 'Home')
 @extends('layouts.default')
 @section('content')
     <!-- Header Start -->
@@ -5,7 +6,8 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="display-4 mb-3 animated slideInDown">Make Better Life With Trusted CryptoCoin</h1>
+                    <h1 class="display-4 mb-3 animated slideInDown text-primary">Make Better Life With Trusted CryptoCoin
+                    </h1>
                     <p class="animated slideInDown">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
                         diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo
                         magna dolore erat amet</p>
@@ -30,7 +32,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100">
-                        <h1 class="display-6">About Us</h1>
+                        <h1 class="display-6 text-primary">About Us</h1>
                         <p class="text-primary fs-5 mb-4">The Most Trusted Cryptocurrency Platform</p>
                         <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos.
                             Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
@@ -64,17 +66,17 @@
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.1s">
                     <img class="img-fluid mb-4" src="img/icon-9.png" alt="">
-                    <h1 class="display-4" data-toggle="counter-up">123456</h1>
+                    <h1 class="display-4 text-primary" data-toggle="counter-up">123456</h1>
                     <p class="fs-5 text-primary mb-0">Today Transactions</p>
                 </div>
                 <div class="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.3s">
                     <img class="img-fluid mb-4" src="img/icon-10.png" alt="">
-                    <h1 class="display-4" data-toggle="counter-up">123456</h1>
+                    <h1 class="display-4 text-primary" data-toggle="counter-up">123456</h1>
                     <p class="fs-5 text-primary mb-0">Monthly Transactions</p>
                 </div>
                 <div class="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.5s">
                     <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
-                    <h1 class="display-4" data-toggle="counter-up">123456</h1>
+                    <h1 class="display-4 text-primary" data-toggle="counter-up">123456</h1>
                     <p class="fs-5 text-primary mb-0">Total Transactions</p>
                 </div>
             </div>
@@ -87,7 +89,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6">Why Us!</h1>
+                <h1 class="display-6 text-primary">Why Us!</h1>
                 <p class="text-primary fs-5 mb-5">The Best In The crypto Industry</p>
             </div>
             <div class="row g-5">
@@ -95,7 +97,7 @@
                     <div class="d-flex align-items-start">
                         <img class="img-fluid flex-shrink-0" src="img/icon-7.png" alt="">
                         <div class="ps-4">
-                            <h5 class="mb-3">Easy To Start</h5>
+                            <h5 class="mb-3 text-primary">Easy To Start</h5>
                             <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
                                 clita duo justo</span>
                         </div>
@@ -105,7 +107,7 @@
                     <div class="d-flex align-items-start">
                         <img class="img-fluid flex-shrink-0" src="img/icon-6.png" alt="">
                         <div class="ps-4">
-                            <h5 class="mb-3">Safe & Secure</h5>
+                            <h5 class="mb-3 text-primary">Safe & Secure</h5>
                             <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
                                 clita duo justo</span>
                         </div>
@@ -115,7 +117,7 @@
                     <div class="d-flex align-items-start">
                         <img class="img-fluid flex-shrink-0" src="img/icon-5.png" alt="">
                         <div class="ps-4">
-                            <h5 class="mb-3">Affordable Plans</h5>
+                            <h5 class="mb-3 text-primary">Affordable Plans</h5>
                             <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
                                 clita duo justo</span>
                         </div>
@@ -125,7 +127,7 @@
                     <div class="d-flex align-items-start">
                         <img class="img-fluid flex-shrink-0" src="img/icon-4.png" alt="">
                         <div class="ps-4">
-                            <h5 class="mb-3">Secure Storage</h5>
+                            <h5 class="mb-3 text-primary">Secure Storage</h5>
                             <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
                                 clita duo justo</span>
                         </div>
@@ -135,7 +137,7 @@
                     <div class="d-flex align-items-start">
                         <img class="img-fluid flex-shrink-0" src="img/icon-3.png" alt="">
                         <div class="ps-4">
-                            <h5 class="mb-3">Protected By Insurance</h5>
+                            <h5 class="mb-3 text-primary">Protected By Insurance</h5>
                             <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
                                 clita duo justo</span>
                         </div>
@@ -145,7 +147,7 @@
                     <div class="d-flex align-items-start">
                         <img class="img-fluid flex-shrink-0" src="img/icon-8.png" alt="">
                         <div class="ps-4">
-                            <h5 class="mb-3">24/7 Support</h5>
+                            <h5 class="mb-3 text-primary">24/7 Support</h5>
                             <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
                                 clita duo justo</span>
                         </div>
@@ -161,14 +163,14 @@
     <div class="container-xxl bg-light py-5 my-5">
         <div class="container py-5">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6">Services</h1>
+                <h1 class="display-6 text-primary">Services</h1>
                 <p class="text-primary fs-5 mb-5">Buy, Sell And Exchange Cryptocurrency</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-white p-5">
                         <img class="img-fluid mb-4" src="img/icon-7.png" alt="">
-                        <h5 class="mb-3">Currency Wallet</h5>
+                        <h5 class="mb-3 text-primary">Currency Wallet</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
                             justo</p>
                         <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
@@ -177,7 +179,7 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item bg-white p-5">
                         <img class="img-fluid mb-4" src="img/icon-3.png" alt="">
-                        <h5 class="mb-3">Currency Transaction</h5>
+                        <h5 class="mb-3 text-primary">Currency Transaction</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
                             justo</p>
                         <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
@@ -186,7 +188,7 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item bg-white p-5">
                         <img class="img-fluid mb-4" src="img/icon-9.png" alt="">
-                        <h5 class="mb-3">Bitcoin Investment</h5>
+                        <h5 class="mb-3 text-primary">Bitcoin Investment</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
                             justo</p>
                         <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
@@ -195,7 +197,7 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-white p-5">
                         <img class="img-fluid mb-4" src="img/icon-5.png" alt="">
-                        <h5 class="mb-3">Currency Exchange</h5>
+                        <h5 class="mb-3 text-primary">Currency Exchange</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
                             justo</p>
                         <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
@@ -204,7 +206,7 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item bg-white p-5">
                         <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
-                        <h5 class="mb-3">Bitcoin Escrow</h5>
+                        <h5 class="mb-3 text-primary">Bitcoin Escrow</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
                             justo</p>
                         <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
@@ -213,7 +215,7 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item bg-white p-5">
                         <img class="img-fluid mb-4" src="img/icon-8.png" alt="">
-                        <h5 class="mb-3">Token Sale</h5>
+                        <h5 class="mb-3 text-primary">Token Sale</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
                             justo</p>
                         <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
@@ -229,38 +231,38 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6">Roadmap</h1>
+                <h1 class="display-6 text-primary ">Roadmap</h1>
                 <p class="text-primary fs-5 mb-5">We Translate Your Dream Into Reality</p>
             </div>
             <div class="owl-carousel roadmap-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="roadmap-item">
                     <div class="roadmap-point"><span></span></div>
-                    <h5>January 2045</h5>
+                    <h5 class="text-light">January 2045</h5>
                     <span>Diam dolor ipsum sit amet erat ipsum lorem sit</span>
                 </div>
                 <div class="roadmap-item">
                     <div class="roadmap-point"><span></span></div>
-                    <h5>March 2045</h5>
+                    <h5 class="text-light">March 2045</h5>
                     <span>Diam dolor ipsum sit amet erat ipsum lorem sit</span>
                 </div>
                 <div class="roadmap-item">
                     <div class="roadmap-point"><span></span></div>
-                    <h5>May 2045</h5>
+                    <h5 class="text-light">May 2045</h5>
                     <span>Diam dolor ipsum sit amet erat ipsum lorem sit</span>
                 </div>
                 <div class="roadmap-item">
                     <div class="roadmap-point"><span></span></div>
-                    <h5>July 2045</h5>
+                    <h5 class="text-light">July 2045</h5>
                     <span>Diam dolor ipsum sit amet erat ipsum lorem sit</span>
                 </div>
                 <div class="roadmap-item">
                     <div class="roadmap-point"><span></span></div>
-                    <h5>September 2045</h5>
+                    <h5 class="text-light">September 2045</h5>
                     <span>Diam dolor ipsum sit amet erat ipsum lorem sit</span>
                 </div>
                 <div class="roadmap-item">
                     <div class="roadmap-point"><span></span></div>
-                    <h5>November 2045</h5>
+                    <h5 class="text-light">November 2045</h5>
                     <span>Diam dolor ipsum sit amet erat ipsum lorem sit</span>
                 </div>
             </div>
@@ -273,31 +275,31 @@
     <div class="container-xxl bg-light py-5 my-5">
         <div class="container py-5">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6">Token Sale</h1>
+                <h1 class="display-6 text-primary">Token Sale</h1>
                 <p class="text-primary fs-5 mb-5">Token Sale Countdown</p>
             </div>
             <div class="row g-3">
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.1s">
                     <div class="bg-white text-center p-3">
-                        <h1 class="mb-0">0</h1>
+                        <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Days</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.3s">
                     <div class="bg-white text-center p-3">
-                        <h1 class="mb-0">0</h1>
+                        <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Hours</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.5s">
                     <div class="bg-white text-center p-3">
-                        <h1 class="mb-0">0</h1>
+                        <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Minutes</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.7s">
                     <div class="bg-white text-center p-3">
-                        <h1 class="mb-0">0</h1>
+                        <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Seconds</span>
                     </div>
                 </div>
@@ -320,7 +322,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6">FAQs</h1>
+                <h1 class="display-6 text-primary">FAQs</h1>
                 <p class="text-primary fs-5 mb-5">Frequently Asked Questions</p>
             </div>
             <div class="row justify-content-center">

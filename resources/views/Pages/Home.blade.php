@@ -168,7 +168,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-white p-5">
+                    <div class="service-item bg-color-one p-5">
                         <img class="img-fluid mb-4" src="img/icon-7.png" alt="">
                         <h5 class="mb-3 text-primary">Currency Wallet</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
@@ -177,7 +177,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-white p-5">
+                    <div class="service-item bg-color-one p-5">
                         <img class="img-fluid mb-4" src="img/icon-3.png" alt="">
                         <h5 class="mb-3 text-primary">Currency Transaction</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
@@ -186,7 +186,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item bg-white p-5">
+                    <div class="service-item bg-color-one p-5">
                         <img class="img-fluid mb-4" src="img/icon-9.png" alt="">
                         <h5 class="mb-3 text-primary">Bitcoin Investment</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
@@ -195,7 +195,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-white p-5">
+                    <div class="service-item bg-color-one p-5">
                         <img class="img-fluid mb-4" src="img/icon-5.png" alt="">
                         <h5 class="mb-3 text-primary">Currency Exchange</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-white p-5">
+                    <div class="service-item bg-color-one p-5">
                         <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
                         <h5 class="mb-3 text-primary">Bitcoin Escrow</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
@@ -213,7 +213,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item bg-white p-5">
+                    <div class="service-item bg-color-one p-5">
                         <img class="img-fluid mb-4" src="img/icon-8.png" alt="">
                         <h5 class="mb-3 text-primary">Token Sale</h5>
                         <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
@@ -280,25 +280,25 @@
             </div>
             <div class="row g-3">
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="bg-white text-center p-3">
+                    <div class="bg-color-one text-center p-3">
                         <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Days</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="bg-white text-center p-3">
+                    <div class="bg-color-one text-center p-3">
                         <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Hours</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="bg-white text-center p-3">
+                    <div class="bg-color-one text-center p-3">
                         <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Minutes</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.7s">
-                    <div class="bg-white text-center p-3">
+                    <div class="bg-color-one text-center p-3">
                         <h1 class="mb-0 text-light">0</h1>
                         <span class="text-primary fs-5">Seconds</span>
                     </div>

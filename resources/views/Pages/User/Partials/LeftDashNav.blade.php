@@ -1,4 +1,4 @@
-<div class="dash-vertical-menu">
+<div class="dash-vertical-menu mb-4">
     <ul>
         <li> <a href="{{ route('user.dashboard') }}" class="@if (request()->route()->getName() == 'user.dashboard') active @endif">
                 <span class="material-icons orange600">dashboard

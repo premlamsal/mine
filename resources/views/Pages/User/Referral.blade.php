@@ -13,7 +13,7 @@
                 <div class="col-lg-10">
                     <div class="dashboard-content-box">
                         <div class="dashboard-box">
-                            <h4>Welcome to Referral {{ auth()->user()->name }}</h4>
+                            <h4 class="text-light">Welcome to Referral {{ auth()->user()->name }}</h4>
                         </div>
                     </div>
                 </div>

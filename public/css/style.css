@@ -1,10 +1,12 @@
 /********** Template CSS **********/
 :root {
     --primary: orange;
+    --primary-border: #ffa50057;
     --secondary: #999999;
     --light: #F2F8FE;
     --dark: #111111;
     --back: #0e1541;
+
 }
 
 .back-to-top {
@@ -169,7 +171,7 @@ h6,
     transition: .5s;
 }
 
-.service-item.bg-white::after {
+.service-item.bg-color-one::after {
     border-color: transparent transparent var(--light) transparent;
 }
 
@@ -353,7 +355,7 @@ h6,
 }
 
 .dash-vertical-menu {
-    width: 200px;
+    /* width: 200px; */
 
     /* Set a width if you like */
 }
@@ -363,7 +365,7 @@ h6,
     margin: 0px;
     padding: 0px;
     background-color: #020720;
-    padding-left: 30px;
+    border: 1px solid var(--primary-border);
 
 }
 
@@ -394,16 +396,25 @@ h6,
     color: var(--primary);
 }
 
-.dash-material-icons.orange600 {
-    /* color: #FB8C00; */
+.dash-vertical-menu ul li a span {
+    margin-right: 10px;
+
+
 }
 
+
+.material-icons .orange600 {}
+
 .dashboard-content-box {
-    border: 1px solid var(--primary);
+    border: 1px solid var(--primary-border);
     padding: 10px;
 }
 
-.bg-white {
+.bg-light {
+    background-color: var(--light);
+}
+
+.bg-color-one {
     background-color: #020720 !important
 }
 
@@ -434,7 +445,7 @@ body {
     border-color: var(--primary) !important;
 }
 
-.service-item.bg-white::after {
+.service-item.bg-color-one::after {
     border-color: transparent transparent var(--primary) transparent;
 }
 
@@ -453,4 +464,80 @@ body {
 .accordion .accordion-button {
     background: #020720;
     border-radius: 0px;
+}
+
+.dashboard-content-box {
+    color: var(--light);
+}
+
+.dashboard-stats-boxes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.dashboard-stats-boxes .dashboard-stats {
+    background: var(--primary);
+    padding: 1em;
+    width: 13em;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.dashboard-stats-boxes .dashboard-stats .icon span {
+    font-size: 35px;
+}
+
+.dashboard-stats-boxes .dashboard-stats .icon span:hover {
+    /* font-size: 39px; */
+}
+
+.dashboard-stats .stats-holder {
+    flex-direction: column;
+    display: flex;
+    align-items: start;
+}
+
+.dashboard-box .referral-box {
+    display: flex;
+}
+
+.dashboard-box .referral-box .referral-label {
+    margin-right: 20px;
+}
+
+.dashboard-box .referral-box .referral-link {
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid var(--primary-border);
+    background: #514d4d99;
+    font-style: italic;
+}
+
+.invitation-container {
+    display: flex;
+    justify-content: center;
+}
+
+.welcome-head {
+    display: flex;
+    /* justify-content: center; */
+}
+
+.welcome-message {
+    font-size: 30px;
+
+}
+
+.welcome-message-box span {
+    color: var(--primary);
+    font-size: 45px;
+
+}
+
+.welcome-para {
+    text-align: justify;
 }

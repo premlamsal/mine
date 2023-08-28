@@ -541,3 +541,8 @@ body {
 .welcome-para {
     text-align: justify;
 }
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--primary);
+}

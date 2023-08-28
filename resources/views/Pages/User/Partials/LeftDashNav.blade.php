@@ -5,7 +5,7 @@
                 </span>Dashboard
             </a>
         </li>
-        <li> <a href="{{ route('user.purchase') }}" class="@if (request()->route()->getName() == 'user.purchase') active @endif""> <span
+        <li> <a href="{{ route('user.purchase') }}" class="@if (request()->route()->getName() == 'user.purchase') active @endif"> <span
                     class="material-icons orange600">local_mall
                 </span> Purchase</a></li>
         <li> <a href="{{ route('user.withdraw') }}" class="@if (request()->route()->getName() == 'user.withdraw') active @endif"> <span

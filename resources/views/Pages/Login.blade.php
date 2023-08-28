@@ -7,8 +7,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4">
                     <div class="text-center">
-                        <i class="bi bi-person-circle display-1 text-primary"></i>
-                        <h1 class="">Login</h1>
+                        <i class="bi bi-person-circle display-1 text-light"></i>
+                        <h1 class="text-primary">Login</h1>
                     </div>
                     <form method="post" action="{{ route('login.custom') }}">
                         @csrf

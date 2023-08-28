@@ -52,22 +52,45 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
-                <a href="/" class="nav-item nav-link active">Home</a>
-                <a href="about" class="nav-item nav-link">About</a>
-                <a href="service" class="nav-item nav-link">Service</a>
-                <a href="roadmap" class="nav-item nav-link">Roadmap</a>
+                <a href="{{ route('home') }}"
+                    class="nav-item nav-link @if (request()->route()->getName() == 'home') active @endif">Home</a>
+                <a href="{{ route('about') }}"
+                    class="nav-item nav-link @if (request()->route()->getName() == 'about') active @endif">About</a>
+                <a href="{{ route('service') }}"
+                    class="nav-item nav-link @if (request()->route()->getName() == 'service') active @endif">Service</a>
+                <a href="{{ route('roadmap') }}"
+                    class="nav-item nav-link @if (request()->route()->getName() == 'roadmap') active @endif">Roadmap</a>
                 <div class="nav-item dropdown">
                     <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu shadow-sm m-0">
-                        <a href="feature" class="dropdown-item">Feature</a>
-                        <a href="token" class="dropdown-item">Token Sale</a>
-                        <a href="faq" class="dropdown-item">FAQs</a>
-                        <a href="404" class="dropdown-item">404 Page</a>
+                        <a href="{{ route('feature') }}"
+                            class="dropdown-item @if (request()->route()->getName() == 'feature') active @endif">Feature</a>
+                        <a href="{{ route('token') }}"
+                            class="dropdown-item @if (request()->route()->getName() == 'token') active @endif">Token
+                            Sale</a>
+                        <a href="{{ route('faq') }}"
+                            class="dropdown-item @if (request()->route()->getName() == 'faq') active @endif">FAQs</a>
+                        <a href="{{ route('404') }}"
+                            class="dropdown-item @if (request()->route()->getName() == '404') active @endif">404
+                            Page</a>
                     </div>
                 </div>
                 <a href="contact" class="nav-item nav-link">Contact</a>
+
+                @guest
+                    <a class="nav-item nav-link @if (request()->route()->getName() == 'login') active @endif"
+                        href="{{ route('login') }}">Login</a>
+                    <a class="nav-item nav-link @if (request()->route()->getName() == 'register-user') active @endif"
+                        href="{{ route('register-user') }}">Register</a>
+                @else
+                    <a class="nav-item nav-link @if (request()->route()->getName() == 'user.dashboard') active @endif"
+                        href="{{ route('user.dashboard') }}">Dashboard</a>
+                    <a class="nav-item nav-link @if (request()->route()->getName() == 'singout') active @endif"
+                        href="{{ route('signout') }}">Logout</a>
+
+                @endguest
             </div>
-            <div class="h-100 d-lg-inline-flex align-items-center d-none">
+            {{-- <div class="h-100 d-lg-inline-flex align-items-center d-none">
                 @guest
                     <a class="btn bg-light text-primary me-2" href="{{ route('login') }}">Login</a>
                     <a class="btn bg-light text-primary me-2" href="{{ route('register-user') }}">Register</a>
@@ -76,7 +99,7 @@
                     <a class="btn bg-light text-primary me-2" href="{{ route('signout') }}">Logout</a>
 
                 @endguest
-            </div>
+            </div> --}}
         </div>
     </nav>
     <!-- Navbar End -->

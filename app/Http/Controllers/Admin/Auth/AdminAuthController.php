@@ -13,6 +13,9 @@ class AdminAuthController extends Controller
 
     public function adminLogin()
     {
+        if (Auth::guard('admin')->check()) {
+            return  redirect('/admin/dashboard');
+        }
         return view('Pages/Admin/Login');
     }
     public function adminLoginCustom(Request $request)

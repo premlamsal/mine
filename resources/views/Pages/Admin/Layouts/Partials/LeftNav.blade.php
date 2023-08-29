@@ -1,166 +1,133 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="../../index.html"><img
-                src="{{ URL::asset('admin/assets/images/logo.svg') }}" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img
-                src="{{ URL::asset('admin/assets/images/logo-mini.svg') }}" alt="logo" /></a>
+<div class="lef-nav-container">
+    <div class="sidebar-header">
+        <div>
+            <img src="assets/images/logo-icon-2.png" class="logo-icon" alt="logo icon">
+        </div>
+        <div>
+            <h4 class="logo-text">{{ env('APP_NAME') }}</h4>
+        </div>
     </div>
-    <ul class="nav">
-        <li class="nav-item profile">
-            <div class="profile-desc">
-                <div class="profile-pic">
-                    <div class="count-indicator">
-                        <img class="img-xs rounded-circle "
-                            src="{{ URL::asset('admin/assets/images/faces/face15.jpg') }}" alt="">
-                        <span class="count bg-success"></span>
-                    </div>
-                    <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">{{ auth('admin')->user()->name }}</h5>
-                        <span>{{ auth('admin')->user()->email }}</span>
-                    </div>
+    <!--navigation-->
+    <ul class="metismenu" id="menu">
+        <li>
+            <a href="{{ route('admin.dashboard') }}">
+                <div class="parent-icon">
+                    <ion-icon name="home-outline"></ion-icon>
                 </div>
-                <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
-                        class="mdi mdi-dots-vertical"></i></a>
-                <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
-                    aria-labelledby="profile-dropdown">
-                    <a href="#" class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-settings text-primary"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-onepassword  text-info"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-calendar-today text-success"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="../../index.html">
-                <span class="menu-icon">
-                    <i class="mdi mdi-speedometer"></i>
-                </span>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
-        {{-- <li class="nav-item menu-items">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
-                <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
-                </span>
-                <span class="menu-title">Basic UI Elements</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link"
-                            href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                    <li class="nav-item"> <a class="nav-link"
-                            href="../../pages/ui-features/typography.html">Typography</a></li>
-                </ul>
-            </div>
-        </li> --}}
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
-                <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
-                </span>
-                <span class="menu-title">Plans</span>
+                <div class="menu-title">Dashboard</div>
             </a>
         </li>
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
-                <span class="menu-icon">
-                    <i class="mdi mdi-chart-bar"></i>
-                </span>
-                <span class="menu-title">Users</span>
-            </a>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
-                <span class="menu-icon">
-                    <i class="mdi mdi-contacts"></i>
-                </span>
-                <span class="menu-title">Miners</span>
-            </a>
-        </li>
-        {{-- <li class="nav-item menu-items">
-            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <span class="menu-icon">
-                    <i class="mdi mdi-security"></i>
-                </span>
-                <span class="menu-title">Payments</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/blank-page.html">
-                            Blank Page </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> 404
-                        </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500
-                        </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login
-                        </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html">
-                            Register </a></li>
-                </ul>
-            </div>
-        </li> --}}
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
-                <span class="menu-icon">
-                    <i class="mdi mdi-file-document-box"></i>
-                </span>
-                <span class="menu-title">Withdraw</span>
+        <li class="menu-label">Sections</li>
+
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <ion-icon name="server-outline"></ion-icon>
+                </div>
+                <div class="menu-title">Miners</div>
             </a>
+            <ul>
+                <li> <a href="widgets-static-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>All Miners
+                    </a>
+                </li>
+                <li> <a href="widgets-data-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>Add New Miner
+                    </a>
+                </li>
+            </ul>
         </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
-                <span class="menu-icon">
-                    <i class="mdi mdi-file-document-box"></i>
-                </span>
-                <span class="menu-title">Payments</span>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <ion-icon name="gift-outline"></ion-icon>
+                </div>
+                <div class="menu-title">Plans</div>
             </a>
+            <ul>
+                <li> <a href="widgets-static-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>All Plans
+                    </a>
+                </li>
+                <li> <a href="widgets-data-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>Add New Plan
+                    </a>
+                </li>
+            </ul>
         </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="">
-                <span class="menu-icon">
-                    <i class="mdi mdi-table-large"></i>
-                </span>
-                <span class="menu-title">Transactions</span>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <ion-icon name="briefcase-outline"></ion-icon>
+                </div>
+                <div class="menu-title">Purchase</div>
             </a>
+            <ul>
+                <li> <a href="widgets-static-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>All Purchase
+                    </a>
+                </li>
+                {{-- <li> <a href="widgets-data-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>Data Widgets
+                    </a>
+                </li> --}}
+            </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <ion-icon name="receipt-outline"></ion-icon>
+                </div>
+                <div class="menu-title">Payment</div>
+            </a>
+            <ul>
+                <li> <a href="widgets-static-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>All Payments
+                    </a>
+                </li>
+                <li> <a href="widgets-data-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>Data Widgets
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <ion-icon name="cash-outline"></ion-icon>
+                </div>
+                <div class="menu-title">WithDraw</div>
+            </a>
+            <ul>
+                <li> <a href="widgets-static-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>All Withdraw
+                    </a>
+                </li>
+                <li> <a href="widgets-data-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>Data Widgets
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
+                <div class="menu-title">Users</div>
+            </a>
+            <ul>
+                <li> <a href="widgets-static-widgets.html">
+                        <ion-icon name="ellipse-outline"></ion-icon>All Users
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
     </ul>
-</nav>
+    <!--end navigation-->
+</div>

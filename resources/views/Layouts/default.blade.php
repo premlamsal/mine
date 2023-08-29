@@ -58,7 +58,7 @@
                     class="nav-item nav-link @if (request()->route()->getName() == 'about') active @endif">About</a>
                 <a href="{{ route('service') }}"
                     class="nav-item nav-link @if (request()->route()->getName() == 'service') active @endif">Service</a>
-                <a href="{{ route('roadmap') }}"
+                {{-- <a href="{{ route('roadmap') }}"
                     class="nav-item nav-link @if (request()->route()->getName() == 'roadmap') active @endif">Roadmap</a>
                 <div class="nav-item dropdown">
                     <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -74,7 +74,7 @@
                             class="dropdown-item @if (request()->route()->getName() == '404') active @endif">404
                             Page</a>
                     </div>
-                </div>
+                </div> --}}
                 <a href="contact" class="nav-item nav-link">Contact</a>
 
                 @guest

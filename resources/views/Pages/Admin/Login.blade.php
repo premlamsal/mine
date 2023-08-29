@@ -3,7 +3,7 @@
 
 <head>
     <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
+    <title>{{ env('APP_NAME') }} | Admin | Login</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -19,7 +19,7 @@
         }
 
         body {
-            background-image: url('{{ URL::asset('admin/assets/images/auth/Login_bg.jpg') }}');
+            background-image: url('{{ URL::asset('admin/assets/images/authentication/au-reset-password-cover.png') }}');
             background-repeat: no-repeat;
             background-size: cover;
             width: 100vw;
@@ -149,6 +149,10 @@
         .social i {
             margin-right: 4px;
         }
+
+        .text-danger {
+            color: #F44336;
+        }
     </style>
 </head>
 
@@ -179,8 +183,7 @@
         @endif
         <button>Log In</button>
         <div class="social">
-            <div class="go"><i class="fab fa-google"></i> Google</div>
-            <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+
         </div>
     </form>
 </body>

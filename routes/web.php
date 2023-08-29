@@ -86,7 +86,19 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
 
     //logged in admin routes
-    Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/miners', [AdminPageController::class, 'miners'])->name('miners');
+
+    Route::get('/add-miner', [AdminPageController::class, 'addMiner'])->name('add.miner');
+
+    Route::post('/create-miner', [AdminPageController::class, 'createMiner'])->name('create.miner');
+
+
+
+
+    Route::post('/admin-logout', [AdminPageController::class, 'adminLogout'])->name('logout');
+
     //end of logged in admin routes
 
 

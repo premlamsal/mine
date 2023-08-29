@@ -1,207 +1,318 @@
-<nav class="navbar p-0 fixed-top d-flex flex-row">
-    <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img
-                src="{{ URL::asset('admin/assets/images/logo-mini.svg') }}" alt="logo" /></a>
-    </div>
-    <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-        </button>
-        <ul class="navbar-nav w-100">
-            <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                    <input type="text" class="form-control" placeholder="Search products">
-                </form>
-            </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown d-none d-lg-block">
-                <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false" href="#">+ Create New
-                    Project</a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                    aria-labelledby="createbuttonDropdown">
-                    <h6 class="p-3 mb-0">Projects</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-file-outline text-primary"></i>
+    <nav class="navbar navbar-expand gap-3">
+        <div class="toggle-icon">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+
+        <form class="searchbar">
+            <div class="position-absolute top-50 translate-middle-y search-icon ms-3">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+            <input class="form-control" type="text" placeholder="Search for anything">
+            <div class="position-absolute top-50 translate-middle-y search-close-icon">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+        </form>
+        <div class="top-navbar-right ms-auto">
+
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link mobile-search-button" href="javascript:;">
+                        <div class="">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dark-mode-icon" href="javascript:;">
+                        <div class="mode-icon">
+                            <ion-icon name="moon-outline"></ion-icon>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item dropdown dropdown-large dropdown-apps">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
+                        data-bs-toggle="dropdown">
+                        <div class="">
+                            <ion-icon name="apps-outline"></ion-icon>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                        <div class="row row-cols-3 g-3 p-3">
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-purple text-white">
+                                    <ion-icon name="cart-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Orders</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-info text-white">
+                                    <ion-icon name="people-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Teams</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-success text-white">
+                                    <ion-icon name="shield-checkmark-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Tasks</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-danger text-white">
+                                    <ion-icon name="videocam-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Media</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-warning text-white">
+                                    <ion-icon name="file-tray-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Files</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-branding text-white">
+                                    <ion-icon name="notifications-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Alerts</div>
                             </div>
                         </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1">Software Development</p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-web text-info"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1">UI Development</p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-layers text-danger"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1">Software Testing</p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">See all projects</p>
-                </div>
-            </li>
-            <li class="nav-item nav-settings d-none d-lg-block">
-                <a class="nav-link" href="#">
-                    <i class="mdi mdi-view-grid"></i>
-                </a>
-            </li>
-            <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="mdi mdi-email"></i>
-                    <span class="count bg-success"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                    aria-labelledby="messageDropdown">
-                    <h6 class="p-3 mb-0">Messages</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ URL::asset('admin/assets/images/faces/face4.jpg') }}" alt="image"
-                                class="rounded-circle profile-pic">
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                            <p class="text-muted mb-0"> 1 Minutes ago </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ URL::asset('admin/assets/images/faces/face2.jpg') }}" alt="image"
-                                class="rounded-circle profile-pic">
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                            <p class="text-muted mb-0"> 15 Minutes ago </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ URL::asset('admin/assets/images/faces/face3.jpg') }}" alt="image"
-                                class="rounded-circle profile-pic">
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                            <p class="text-muted mb-0"> 18 Minutes ago </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">4 new messages</p>
-                </div>
-            </li>
-            <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                    data-bs-toggle="dropdown">
-                    <i class="mdi mdi-bell"></i>
-                    <span class="count bg-danger"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                    aria-labelledby="notificationDropdown">
-                    <h6 class="p-3 mb-0">Notifications</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-calendar text-success"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Event today</p>
-                            <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event
-                                today </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-settings text-danger"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Settings</p>
-                            <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-link-variant text-warning"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Launch Admin</p>
-                            <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">See all notifications</p>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
-                    <div class="navbar-profile">
-                        <img class="img-xs rounded-circle"
-                            src="{{ URL::asset('admin/assets/images/faces/face15.jpg') }}" alt="">
-                        <p class="mb-0 d-none d-sm-block navbar-profile-name">Prem Lamsal</p>
-                        <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                    aria-labelledby="profileDropdown">
-                    <h6 class="p-3 mb-0">Profile</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-settings text-success"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Settings</p>
+                </li>
+                <li class="nav-item dropdown dropdown-large">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
+                        data-bs-toggle="dropdown">
+                        <div class="position-relative">
+                            <span class="notify-badge">8</span>
+                            <ion-icon name="notifications-outline"></ion-icon>
                         </div>
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-logout text-danger"></i>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a href="javascript:;">
+                            <div class="msg-header">
+                                <p class="msg-header-title">Notifications</p>
+                                <p class="msg-header-clear ms-auto">Marks all as read</p>
                             </div>
+                        </a>
+                        <div class="header-notifications-list">
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-primary">
+                                        <ion-icon name="cart-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
+                                                ago</span></h6>
+                                        <p class="msg-info">You have recived new orders</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-danger">
+                                        <ion-icon name="person-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Customers<span class="msg-time float-end">14
+                                                Sec
+                                                ago</span></h6>
+                                        <p class="msg-info">5 new user registered</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-success">
+                                        <ion-icon name="document-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">24 PDF File<span class="msg-time float-end">19
+                                                min
+                                                ago</span></h6>
+                                        <p class="msg-info">The pdf files generated</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-info">
+                                        <ion-icon name="checkmark-done-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Product Approved <span class="msg-time float-end">2
+                                                hrs
+                                                ago</span></h6>
+                                        <p class="msg-info">Your new product has approved</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-warning">
+                                        <ion-icon name="send-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">Time Response <span class="msg-time float-end">28
+                                                min
+                                                ago</span></h6>
+                                        <p class="msg-info">5.1 min avarage time response</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-danger">
+                                        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Comments <span class="msg-time float-end">4
+                                                hrs
+                                                ago</span></h6>
+                                        <p class="msg-info">New customer comments recived</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-primary">
+                                        <ion-icon name="albums-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New 24 authors<span class="msg-time float-end">1
+                                                day
+                                                ago</span></h6>
+                                        <p class="msg-info">24 new authors joined last week</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-success">
+                                        <ion-icon name="shield-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5
+                                                hrs
+                                                ago</span></h6>
+                                        <p class="msg-info">Successfully shipped your item</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-warning">
+                                        <ion-icon name="cafe-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">Defense Alerts <span class="msg-time float-end">2
+                                                weeks
+                                                ago</span></h6>
+                                        <p class="msg-info">45% less alerts last 4 weeks</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Log out</p>
+                        <a href="javascript:;">
+                            <div class="text-center msg-footer">View All Notifications</div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown dropdown-user-setting">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
+                        data-bs-toggle="dropdown">
+                        <div class="user-setting">
+                            <img src="assets/images/avatars/06.png" class="user-img" alt="">
                         </div>
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">Advanced settings</p>
-                </div>
-            </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-            data-toggle="offcanvas">
-            <span class="mdi mdi-format-line-spacing"></span>
-        </button>
-    </div>
-</nav>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex flex-row align-items-center gap-2">
+                                    <img src="assets/images/avatars/06.png" alt="" class="rounded-circle"
+                                        width="54" height="54">
+                                    <div class="">
+                                        <h6 class="mb-0 dropdown-user-name">{{ auth('admin')->user()->name }}</h6>
+                                        <small class="mb-0 dropdown-user-designation text-secondary">
+                                            {{ auth('admin')->user()->email }}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <ion-icon name="person-outline"></ion-icon>
+                                    </div>
+                                    <div class="ms-3"><span>Profile</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <ion-icon name="settings-outline"></ion-icon>
+                                    </div>
+                                    <div class="ms-3"><span>Setting</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <ion-icon name="speedometer-outline"></ion-icon>
+                                    </div>
+                                    <div class="ms-3"><span>Dashboard</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <ion-icon name="wallet-outline"></ion-icon>
+                                    </div>
+                                    <div class="ms-3"><span>Earnings</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <ion-icon name="cloud-download-outline"></ion-icon>
+                                    </div>
+                                    <div class="ms-3"><span>Downloads</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form method="post" action="{{ route('admin.logout') }}">
+                                @csrf
+                                <button class="dropdown-item" type="submit">
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <ion-icon name="log-out-outline"></ion-icon>
+                                        </div>
+                                        <div class="ms-3"><span>Logout</span></div>
+                                    </div>
+                                </button>
+                            </form>
+
+
+
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>

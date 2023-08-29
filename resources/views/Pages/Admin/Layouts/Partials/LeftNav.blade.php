@@ -1,7 +1,7 @@
 <div class="lef-nav-container">
     <div class="sidebar-header">
         <div>
-            <img src="assets/images/logo-icon-2.png" class="logo-icon" alt="logo icon">
+            <img src="{{ asset('/admin/assets/images/logo-icon-2.png') }}" class="logo-icon" alt="logo icon">
         </div>
         <div>
             <h4 class="logo-text">{{ env('APP_NAME') }}</h4>
@@ -30,11 +30,11 @@
                 <div class="menu-title">Miners</div>
             </a>
             <ul>
-                <li> <a href="widgets-static-widgets.html">
+                <li> <a href="{{ route('admin.miners') }}">
                         <ion-icon name="ellipse-outline"></ion-icon>All Miners
                     </a>
                 </li>
-                <li> <a href="widgets-data-widgets.html">
+                <li> <a href="{{ route('admin.add.miner') }}">
                         <ion-icon name="ellipse-outline"></ion-icon>Add New Miner
                     </a>
                 </li>

@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\User\Auth\UserAuthController;
 use App\Http\Controllers\User\UserPageController;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -94,6 +96,10 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::post('/create-miner', [AdminPageController::class, 'createMiner'])->name('create.miner');
 
+    Route::get('/edit-miner/{id}', [AdminPageController::class, 'editMiner'])->name('edit.miner');
+
+    Route::post('/update-miner', [AdminPageController::class, 'updateMiner'])->name('update.miner');
+
 
 
 
@@ -104,4 +110,21 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::post('/admin-custom-login', [AdminAuthController::class, 'adminLoginCustom'])->name('login.custom');
     Route::get('/login', [AdminAuthController::class, 'adminLogin'])->name('login');
+});
+
+
+Route::get('/storage/{folder}/{filename}', function ($folder, $filename) {
+    $path = storage_path('app/public/' . $folder . '/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
 });

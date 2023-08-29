@@ -25,8 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <!--Theme Styles-->
-    <link href="{{ URL::asset('admin/assets/css/dark-theme.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('admin/assets/css/semi-dark.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ URL::asset('admin/assets/css/dark-theme.css') }}" rel="stylesheet" /> --}}
+    {{-- <link href="{{ URL::asset('admin/assets/css/semi-dark.css') }}" rel="stylesheet" /> --}}
     <link href="{{ URL::asset('admin/assets/css/header-colors.css') }}" rel="stylesheet" />
 
     <link href="{{ URL::asset('admin/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"

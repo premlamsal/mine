@@ -1,4 +1,4 @@
-@section('PageTitle', 'Add New Miner')
+@section('PageTitle', 'Edit New Miner')
 
 @extends('Pages.Admin.Layouts.default')
 @section('adminContent')
@@ -13,7 +13,7 @@
                     <ol class="breadcrumb mb-0 p-0 align-items-center">
                         <li class="breadcrumb-item"><a href="javascript:;"><ion-icon name="home-outline"></ion-icon></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add New Miner</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Miner</li>
                     </ol>
                 </nav>
             </div>
@@ -54,48 +54,63 @@
         </div>
 
         <div class="row ">
+
             <div class="col-md-6">
                 <div class="card ">
 
 
 
 
-
                     <div class="card-header">
-                        <h6 class="mb-0 ">Add Miner</h6>
+                        <h6 class="mb-0 ">Edit Miner</h6>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.create.miner') }}" enctype="multipart/form-data">
+
+
+
+                        <form method="POST" action="{{ route('admin.update.miner') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Miner Name:</label>
-                                <input type="text" class="form-control" placeholder="Bitcoin" name="miner_name">
+                                <input type="hidden" class="form-control" name="miner_id" value="{{ $miner->id }}">
+                                <input type="text" class="form-control" placeholder="Bitcoin" name="miner_name"
+                                    value="{{ $miner->miner_name }}">
                                 @if ($errors->has('miner_name'))
                                     <div class="text-danger">{{ $errors->first('miner_name') }}</div>
                                 @endif
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Coin Name:</label>
-                                <input type="text" class="form-control" placeholder="BTC" name="coin_code">
+                                <input type="text" class="form-control" placeholder="BTC" name="coin_code"
+                                    value="{{ $miner->coin_code }}">
                                 @if ($errors->has('coin_code'))
                                     <div class="text-danger">{{ $errors->first('coin_code') }}</div>
                                 @endif
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Min WithDrawal Limit:</label>
-                                <input type="text" class="form-control" placeholder="10" name="min_withdraw_limit">
+                                <input type="text" class="form-control" placeholder="10" name="min_withdraw_limit"
+                                    value="{{ $miner->min_withdraw_limit }}">
                                 @if ($errors->has('min_withdraw_limit'))
                                     <div class="text-danger">{{ $errors->first('min_withdraw_limit') }}</div>
                                 @endif
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Max WithDrawal Limit:</label>
-                                <input type="text" class="form-control" placeholder="1000" name="max_withdraw_limit">
+                                <input type="text" class="form-control" placeholder="1000" name="max_withdraw_limit"
+                                    value="{{ $miner->max_withdraw_limit }}">
                                 @if ($errors->has('max_withdraw_limit'))
                                     <div class="text-danger">{{ $errors->first('max_withdraw_limit') }}</div>
                                 @endif
                             </div>
                             <div class="mb-3">
+
+                                <img src="{{ Storage::url('imger/' . $miner->image) }}" style="width:100px;height:100px"
+                                    class="" />
+                            </div>
+                            <div class="mb-3">
+
+
                                 <label class="form-label">Image:</label>
                                 <input type="file" class="form-control" name="image">
                                 @if ($errors->has('image'))

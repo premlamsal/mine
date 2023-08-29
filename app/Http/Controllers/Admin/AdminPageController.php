@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Miner;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -103,6 +104,132 @@ class AdminPageController extends Controller
         } else {
             return redirect('/admin/miners')->with([
                 'message' => 'Miner update failed!',
+                'status' => 'error'
+            ]);
+        }
+    }
+    public function plans()
+    {
+
+        $plans = Plan::with('miner')->get();
+        // dd($plans->get());
+        // dd($plans);
+        return view('Pages/Admin/Plan/AllPlans')->with('plans', $plans);
+    }
+
+
+    public function addPlan()
+
+    {
+
+        $miners = Miner::all();
+
+        return view('Pages/Admin/Plan/AddNewPlan')->with('miners', $miners);
+    }
+    public function createPlan(Request $request)
+    {
+
+        $this->validate($request, [
+            'miner_id'   => 'required',
+            'title' => 'required',
+            'price' => 'required',
+            'return_amount_type' => 'required',
+            'return_amount_per_day' => 'required',
+            'speed' => 'required',
+            'speed_unit' => 'required',
+
+            'period' => 'required',
+            'period_time' => 'required',
+
+            'maintenance_cost' => 'required',
+            'features' => 'required',
+            'description' => 'required',
+        ]);
+
+        $plan = new Plan();
+        $plan->miner_id = $request->input('miner_id');
+        $plan->title = $request->input('title');
+        $plan->price = $request->input('price');
+        $plan->return_amount_type = $request->input('return_amount_type');
+        $plan->return_amount_per_day = $request->input('return_amount_per_day');
+        $plan->speed = $request->input('speed');
+        $plan->period = $request->input('period');
+
+        $plan->maintenance_cost = $request->input('maintenance_cost');
+        $plan->features = $request->input('features');
+        $plan->description = $request->input('description');
+
+        $plan->period_time = $request->input('period_time');
+        $plan->speed_unit = $request->input('speed_unit');
+        $plan->status = 1; //status 1 for active
+        if ($plan->save()) {
+
+            return redirect('/admin/plans')->with([
+                'message' => 'Plan added successfully!',
+                'status' => 'success'
+            ]);
+        } else {
+            return redirect('/admin/plans')->with([
+                'message' => 'Plan creation failed!',
+                'status' => 'error'
+            ]);
+        }
+    }
+
+    public function editPlan($id)
+    {
+        $plan = Plan::where('id', $id)->with('miner')->first();
+        $miners = Miner::all();
+
+        return view('Pages/Admin/Plan/EditPlan')->with(['plan' => $plan, 'miners' => $miners]);
+    }
+    public function updatePlan(Request $request)
+    {
+
+        $this->validate($request, [
+            'miner_id'   => 'required',
+            'title' => 'required',
+            'price' => 'required',
+            'return_amount_type' => 'required',
+            'return_amount_per_day' => 'required',
+            'speed' => 'required',
+            'speed_unit' => 'required',
+
+            'period' => 'required',
+            'period_time' => 'required',
+
+            'maintenance_cost' => 'required',
+            'features' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+
+        ]);
+
+        $plan =  Plan::where('id', $request->input('plan_id'))->first();
+        $plan->miner_id = $request->input('miner_id');
+        $plan->title = $request->input('title');
+        $plan->price = $request->input('price');
+        $plan->return_amount_type = $request->input('return_amount_type');
+        $plan->return_amount_per_day = $request->input('return_amount_per_day');
+        $plan->speed = $request->input('speed');
+        $plan->period = $request->input('period');
+
+        $plan->maintenance_cost = $request->input('maintenance_cost');
+        $plan->features = $request->input('features');
+        $plan->description = $request->input('description');
+
+        $plan->period_time = $request->input('period_time');
+        $plan->speed_unit = $request->input('speed_unit');
+        $plan->status = $request->input('status'); //status 1 for active
+        if ($plan->save()) {
+
+            return redirect('/admin/plans')->with([
+                'message' => 'Plan updated successfully!',
+                'status' => 'success'
+            ]);
+        } else {
+            return redirect('/admin/plans')->with([
+                'message' => 'Plan updation failed!',
                 'status' => 'error'
             ]);
         }

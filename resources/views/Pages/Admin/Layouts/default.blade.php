@@ -33,6 +33,15 @@
         rel="stylesheet" />
 
 
+    <link href="{{ URL::asset('admin/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
+
+    <style>
+        .bootstrap-tagsinput {
+            line-height: 30px;
+        }
+    </style>
+
+
     <title>{{ env('APP_NAME') }} | @yield('PageTitle')</title>
 </head>
 
@@ -170,6 +179,9 @@
     <script src="{{ URL::asset('admin/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('admin/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ URL::asset('admin/assets/js/table-datatable.js') }}"></script>
+
+
+    <script src="{{ URL::asset('admin/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 
     <script src="{{ URL::asset('admin/assets/js/index.js') }}"></script>
 

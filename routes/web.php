@@ -90,6 +90,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
     //logged in admin routes
     Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');
 
+
+    //miner rotues
     Route::get('/miners', [AdminPageController::class, 'miners'])->name('miners');
 
     Route::get('/add-miner', [AdminPageController::class, 'addMiner'])->name('add.miner');
@@ -99,6 +101,22 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/edit-miner/{id}', [AdminPageController::class, 'editMiner'])->name('edit.miner');
 
     Route::post('/update-miner', [AdminPageController::class, 'updateMiner'])->name('update.miner');
+    //end of miner routes
+
+    //plan routes
+
+    Route::get('/plans', [AdminPageController::class, 'plans'])->name('plans');
+
+    Route::get('/add-plan', [AdminPageController::class, 'addPlan'])->name('add.plan');
+
+    Route::post('/create-plan', [AdminPageController::class, 'createPlan'])->name('create.plan');
+
+    Route::get('/edit-plan/{id}', [AdminPageController::class, 'editPlan'])->name('edit.plan');
+
+    Route::post('/update-plan', [AdminPageController::class, 'updatePlan'])->name('update.plan');
+
+
+    //end of plan routes
 
 
 

@@ -48,11 +48,11 @@
                 <div class="menu-title">Plans</div>
             </a>
             <ul>
-                <li> <a href="widgets-static-widgets.html">
+                <li> <a href="{{ route('admin.plans') }}">
                         <ion-icon name="ellipse-outline"></ion-icon>All Plans
                     </a>
                 </li>
-                <li> <a href="widgets-data-widgets.html">
+                <li> <a href="{{ route('admin.add.plan') }}">
                         <ion-icon name="ellipse-outline"></ion-icon>Add New Plan
                     </a>
                 </li>

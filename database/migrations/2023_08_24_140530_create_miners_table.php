@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('coin_code');
             $table->string('min_withdraw_limit');
             $table->string('max_withdraw_limit');
+            $table->enum('status', [0, 1]);
             $table->timestamps();
         });
     }

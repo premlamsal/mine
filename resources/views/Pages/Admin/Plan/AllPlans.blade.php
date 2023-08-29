@@ -7,13 +7,13 @@
 
         <!--start breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Miner</div>
+            <div class="breadcrumb-title pe-3">Plan</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0 align-items-center">
                         <li class="breadcrumb-item"><a href="javascript:;"><ion-icon name="home-outline"></ion-icon></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Miners</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Plans</li>
                     </ol>
                 </nav>
             </div>
@@ -42,27 +42,31 @@
                             <table id="example2" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Miner Name</th>
-                                        <th>Coin Code</th>
-                                        <th>Plans</th>
-                                        <th>WithDrawal Limit</th>
+                                        <th>Title</th>
+                                        <th>Miner</th>
+                                        <th>Price</th>
+                                        <th>Speed</th>
+                                        <th>Period</th>
+                                        <th>Return/Day</th>
+                                        <th>Maintenance</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($miners as $miner)
+                                    @foreach ($plans as $plan)
                                         <tr>
-                                            <th><img src="{{ Storage::url('imger/' . $miner->image) }}"
-                                                    style="width:40px;height:40px" class="" />
+                                            <th>{{ $plan->title }}
                                             </th>
-                                            <th>{{ $miner->miner_name }}</th>
-                                            <th>{{ $miner->coin_code }}</th>
-                                            <th>Plans</th>
-                                            <th>{{ $miner->min_withdraw_limit }} - {{ $miner->max_withdraw_limit }}</th>
+                                            <th>{{ $plan->miner->miner_name }}</th>
+                                            <th>{{ $plan->price }}</th>
+                                            <th>{{ $plan->speed }} {{ $plan->speed_unit }}</th>
+                                            <th>{{ $plan->period }} {{ $plan->period_time }}</th>
+                                            <th>{{ $plan->return_amount_per_day }}</th>
+                                            <th>{{ $plan->maintenance_cost }} %</th>
                                             <th>
-                                                @if ($miner->status)
+
+                                                @if ($plan->status)
                                                     <div class="bg-success text-white text-center"
                                                         style="border-radius: 10px"> Active</div>
                                                 @else
@@ -72,7 +76,7 @@
                                             </th>
                                             <th>
                                                 <a class="btn btn-warning text-white"
-                                                    href="{{ route('admin.edit.miner', ['id' => $miner->id]) }}">
+                                                    href="{{ route('admin.edit.plan', ['id' => $plan->id]) }}">
                                                     Edit
                                                 </a>
                                                 <a class="btn btn-danger" href="#">

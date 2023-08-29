@@ -57,6 +57,8 @@
             <div class="navbar-nav ms-auto py-4 py-lg-0">
                 <a href="{{ route('home') }}"
                     class="nav-item nav-link @if (request()->route()->getName() == 'home') active @endif">Home</a>
+                <a href="{{ route('plans') }}"
+                    class="nav-item nav-link @if (request()->route()->getName() == 'plans') active @endif">Plans</a>
                 <a href="{{ route('about') }}"
                     class="nav-item nav-link @if (request()->route()->getName() == 'about') active @endif">About</a>
                 <a href="{{ route('service') }}"

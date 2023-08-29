@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\User\Auth\UserAuthController;
 use App\Http\Controllers\User\UserPageController;
 use Illuminate\Http\Response;
@@ -43,6 +44,7 @@ Route::get('/feature', function () {
     return view('Pages/Features');
 })->name('feature');
 
+
 Route::get('/roadmap', function () {
     return view('Pages/Roadmap');
 })->name('roadmap');
@@ -55,6 +57,7 @@ Route::get('/token', function () {
 })->name('token');
 
 
+Route::get('/plans', [PageController::class, 'plans'])->name('plans');
 
 
 Route::name('user.')->prefix('user')->group(function () {

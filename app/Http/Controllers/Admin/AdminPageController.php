@@ -230,7 +230,7 @@ class AdminPageController extends Controller
         } else {
             return redirect('/admin/plans')->with([
                 'message' => 'Plan updation failed!',
-                'status' => 'error'
+                'status' => 'danger'
             ]);
         }
     }

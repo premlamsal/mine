@@ -30,6 +30,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
+
+
+    @stack('style')
 </head>
 
 <body>

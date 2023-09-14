@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('gateway');
-            $table->string('user');
+            $table->string('email');
+            $table->string('from_currency');
+            $table->string('entered_amount');
+            $table->string('to_currency');
             $table->string('amount');
+            $table->string('gateway_id');
+            $table->text('gateway_url');
+            // $table->string('user');
             $table->string('status'); // Initiated, approved , requested, rejected, 
 
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Miner;
 use App\Models\Plan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -234,6 +235,15 @@ class AdminPageController extends Controller
             ]);
         }
     }
+
+    public function users()
+    {
+        $users = User::all();
+        // dd($plans->get());
+        // dd($plans);
+        return view('Pages/Admin/User/AllUsers')->with('users', $users);
+    }
+
     public function adminLogout()
     {
         if (Auth::guard('admin')->logout());

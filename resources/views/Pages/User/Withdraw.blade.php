@@ -10,15 +10,170 @@
                     @include('Pages/User.Partials.LeftDashNav')
 
                 </div>
+                {{-- {{ auth()->user()->name }} --}}
                 <div class="col-lg-10">
                     <div class="dashboard-content-box">
                         <div class="dashboard-box">
-                            <h4 class="text-light">Welcome to Withdraw {{ auth()->user()->name }}</h4>
+                            <div class="dashboard-stats-boxes mt-4">
+                                <div class="dashboard-stats">
+                                    <div class="icon"><span class="material-icons orange600">flash_on
+                                        </span></div>
+                                    <div class="stats-holder">
+                                        <div class="small-stats-title">
+                                            Min Payout
+
+                                        </div>
+                                        <div class="small-stats-body">0.00001 BTC</div>
+
+                                    </div>
+
+                                </div>
+                                <div class="dashboard-stats">
+                                    <div class="icon"><span class="material-icons orange600">monetization_on
+                                        </span></div>
+                                    <div class="stats-holder">
+
+                                        <div class="small-stats-title">Total Paid Out</div>
+                                        <div class="small-stats-body">0.000000 BTC</div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="dashboard-stats">
+                                    <div class="icon"><span class="material-icons orange600">ios_share
+                                        </span></div>
+                                    <div class="stats-holder">
+
+                                        <div class="small-stats-title">No. of Payouts</div>
+                                        <div class="small-stats-body">1</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="dashboard-under-content mt-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="welcome-message-box">
+                                            <div class="welcome-head">
+                                                <div class="icon">
+                                                    <span class="material-icons orange600">sentiment_very_satisfied
+                                                    </span>
+                                                </div>
+                                                <div class="welcome-message text-primary">
+                                                    Hello {{ auth()->user()->name }}, Transfer your Mined Bitcoins
+                                                </div>
+                                            </div>
+
+                                            <div class="welcome-para">
+                                                Send any amount of Bitcoins of your choice to your personal Bitcoin wallet
+                                                address. Of course, it is assumed that you already have your own Bitcoin
+                                                address. You can easily create one anywhere within a few seconds. (Consult a
+                                                search engine of your choice for detailed help.)
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="middle-box-container" style="margin-top: 4em">
+                                                <div class="middle-box-inside-box">
+                                                    <div class="custom-heading">
+                                                        <h5 class="tex-primary" style="color:white"> Cash Out Your Mined
+                                                            Bitcoins
+                                                        </h5>
+                                                    </div>
+                                                    <div class="description-box">
+                                                        <div class="d1">
+
+                                                        </div>
+                                                        <div class="d2">
+
+                                                            Before you pay out please check the correctness of your Bitcoin
+                                                            wallet address again.
+                                                            Due to the way Bitcoin technology works, the withdrawal process
+                                                            is irrevocable.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="with-draw-box">
+                                                    <div class="with-draw-box-inside">
+                                                        <div class="text-primary mb-3">
+                                                            Cash Out
+                                                        </div>
+                                                        <div class="mt-5">
+                                                            Your Earnings: {{ auth()->user()->balance }}
+                                                            {{ auth()->user()->currency }}
+
+                                                        </div>
+
+                                                        <div class="mt-5 mb-3">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Amount" name="with_draw_amount">
+                                                                    @if ($errors->has('with_draw_amount'))
+                                                                        <div class="text-danger">
+                                                                            {{ $errors->first('with_draw_amount') }}
+                                                                        </div>
+                                                                    @endif
+                                                                </div>
+                                                                <select class="form-control" id="inputGroupSelect01"
+                                                                    name="period_time">
+                                                                    <option value="day">BTC</option>
+                                                                    <option value="month">USDT</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Wallet Address" name="wallet_address" />
+                                                                @if ($errors->has('wallet_address'))
+                                                                    <div class="text-danger">
+                                                                        {{ $errors->first('wallet_address') }}</div>
+                                                                @endif
+                                                            </div>
+                                                            <div class="mt-5">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Withdraw</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- 404 End -->
-@stop
+        <!-- 404 End -->
+    @stop

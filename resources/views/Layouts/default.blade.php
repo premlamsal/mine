@@ -25,10 +25,20 @@
     <link href="{{ URL::asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
+
+
+
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/css/toastr.css" rel="stylesheet" />
+
     <!-- Template Stylesheet -->
+
+
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
 
 
@@ -80,7 +90,7 @@
                             Page</a>
                     </div>
                 </div> --}}
-                <a href="contact" class="nav-item nav-link">Contact</a>
+                <a href="contact" class="nav-item nav-link @if (request()->route()->getName() == 'contact') active @endif"">Contact</a>
 
                 @guest
                     <a class="nav-item nav-link @if (request()->route()->getName() == 'login') active @endif"
@@ -199,8 +209,56 @@
     <script src="{{ URL::asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
     <script src="{{ URL::asset('lib/counterup/counterup.min.js') }}"></script>
 
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
+
+
     <!-- Template Javascript -->
     <script src="{{ URL::asset('js/main.js') }}"></script>
+
+    <script>
+        @if (Session::has('message'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+
+            }
+            toastr.success("{{ session('message') }}");
+        @endif
+
+        @if (Session::has('error'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+            }
+            toastr.error("{{ session('error') }}");
+        @endif
+
+        @if (Session::has('info'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+
+            }
+            toastr.info("{{ session('info') }}");
+        @endif
+
+        @if (Session::has('warning'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+            }
+            toastr.warning("{{ session('warning') }}");
+        @endif
+    </script>
+
+    @stack('script')
+
 </body>
 
 </html>

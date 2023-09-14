@@ -13,6 +13,16 @@
                     </div>
                     <form method="POST" action="{{ route('register.custom') }}">
                         @csrf
+
+                        @if (isset($user_name))
+                            <div class="referral-information">
+                                <div class="referral-information mb-3">
+                                    You are under referral of {{ $user_name }}
+                                    <input type="hidden" class="form-control" name="ref_id" value="{{ $user_unique_id }}">
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="form-group mb-3">
                             <input type="text" placeholder="Name" id="name" class="form-control" name="name"
                                 required autofocus>
@@ -32,6 +42,13 @@
                                 name="password" required>
                             @if ($errors->has('password'))
                                 <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" placeholder="Bitcoin Address (Optional)" id="bitcoin_address"
+                                class="form-control" name="bitcoin_address" required>
+                            @if ($errors->has('bitcoin_address'))
+                                <span class="text-danger">{{ $errors->first('bitcoin_address') }}</span>
                             @endif
                         </div>
                         <div class="form-group mb-3">

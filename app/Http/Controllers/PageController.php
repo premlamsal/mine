@@ -15,7 +15,7 @@ class PageController extends Controller
     public function plans()
     {
 
-        $plans = Plan::all();
+        $plans = Plan::with('miner')->get();
 
         return view('Pages/Plans')->with('plans', $plans);
     }

@@ -164,7 +164,7 @@
                                                     <div class="text-danger">{{ $errors->first('period') }}</div>
                                                 @endif
                                             </div>
-                                            <select class="form-control" id="inputGroupSelect01" name="period">
+                                            <select class="form-control" id="inputGroupSelect01" name="period_time">
                                                 <option value="day">Day</option>
                                                 <option value="month">Month</option>
                                                 <option value="year">Year</option>

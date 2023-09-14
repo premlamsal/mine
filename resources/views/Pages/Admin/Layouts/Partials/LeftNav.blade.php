@@ -120,7 +120,7 @@
                 <div class="menu-title">Users</div>
             </a>
             <ul>
-                <li> <a href="widgets-static-widgets.html">
+                <li> <a href="{{ route('admin.users') }}">
                         <ion-icon name="ellipse-outline"></ion-icon>All Users
                     </a>
                 </li>

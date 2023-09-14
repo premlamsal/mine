@@ -189,7 +189,6 @@
     <!-- Main JS-->
     <script src="{{ URL::asset('admin/assets/js/main.js') }}"></script>
 
-
 </body>
 
 </html>

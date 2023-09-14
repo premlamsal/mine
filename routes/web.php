@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
+use App\Http\Controllers\CoinPaymentController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\User\Auth\UserAuthController;
 use App\Http\Controllers\User\UserPageController;
-use Illuminate\Http\Response;
+use App\Http\Controllers\User\UserPurchaseController;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
@@ -65,16 +67,65 @@ Route::name('user.')->prefix('user')->group(function () {
     //logged in user routes
 
     Route::get('/dashboard', [UserPageController::class, 'dashboard'])->name('dashboard');
-    Route::get('purchase', [UserPageController::class, 'purchase'])->name('purchase');
     Route::get('withdraw', [UserPageController::class, 'withdraw'])->name('withdraw');
     Route::get('referral', [UserPageController::class, 'referral'])->name('referral');
     Route::get('settings', [UserPageController::class, 'settings'])->name('settings');
+
+
+
+    //purchase
+    Route::get('purchase', [UserPageController::class, 'purchase'])->name('purchase');
+
+    Route::post('purchase-process', [UserPurchaseController::class, 'purchaseProcess'])->name('purchase.process');
+
+
+
+
+
+
+
 
     // end of logged in user routes
 
 
     Route::get('logoutother', [UserPageController::class, 'logoutother'])->name('logoutother');
 });
+
+
+
+
+
+
+// testing coin payment coin payment
+
+Route::get('payment', [CoinPaymentController::class, 'payment'])->name('payment');
+
+Route::post('process-payment', [CoinPaymentController::class, 'processPayment'])->name('process.payment');
+
+
+//this will be called when payment accepted
+Route::post('payment-hook', [CoinPaymentController::class, 'paymentHook'])->name('payment.hook');
+
+
+
+Route::get('withdraw', [CoinPaymentController::class, 'withdraw'])->name('withdraw');
+
+Route::post('process-withdrawal', [CoinPaymentController::class, 'processWithDrawal'])->name('process.withdrawal');
+
+
+//this will be called when payment accepted
+Route::post('withdrawal-hook', [CoinPaymentController::class, 'withDrawalHook'])->name('withdrawal.hook');
+
+
+
+
+
+//end of coin payment
+
+
+
+
+
 
 
 
@@ -121,6 +172,14 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     //end of plan routes
 
+
+    //users
+
+    Route::get('/users', [AdminPageController::class, 'users'])->name('users');
+
+
+
+    //end users
 
 
 

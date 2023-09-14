@@ -32,8 +32,18 @@ class UserAuthController extends Controller
 
         return redirect("login")->withSuccess('Login details are not valid');
     }
-    public function registration()
+    public function registration(Request $request)
     {
+        if (Auth::check()) {
+            return redirect('user/dashboard');
+        }
+
+        if ($request->has('ref')) {
+            $user_data = User::where('unique_user_id', $request->input('ref'))->first();
+            if ($user_data) {
+                return view('Pages/Register')->with(['user_unique_id' => $user_data->unique_user_id, 'user_name' => $user_data->name]);
+            }
+        }
         return view('Pages/Register');
     }
 
@@ -52,11 +62,22 @@ class UserAuthController extends Controller
     }
     public function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->unique_user_id = $this->randomString();
+        $user->status = 'active';
+        $user->active_mining_power = 900;
+        $user->active_mining_power_unit = 'TH/s';
+        if (isset($data['ref_id'])) {
+            $user->ref_id = $data['ref_id'];
+        }
+        if (isset($data['bitcoin_address'])) {
+            $user->bitcoin_address = $data['bitcoin_address'];
+        }
+        $user->password = Hash::make($data['password']);
+        return $user->save();
     }
 
     public function signOut()
@@ -65,5 +86,25 @@ class UserAuthController extends Controller
         Auth::guard()->logout();
 
         return Redirect('login');
+    }
+    public function randomString($length = 10)
+    {
+        // Set the chars
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Count the total chars
+        $totalChars = strlen($chars);
+
+        // Get the total repeat
+        $totalRepeat = ceil($length / $totalChars);
+
+        // Repeat the string
+        $repeatString = str_repeat($chars, $totalRepeat);
+
+        // Shuffle the string result
+        $shuffleString = str_shuffle($repeatString);
+
+        // get the result random string
+        return substr($shuffleString, 1, $length);
     }
 }

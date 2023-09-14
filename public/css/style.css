@@ -366,6 +366,7 @@ h6,
     padding: 0px;
     background-color: #020720;
     border: 1px solid var(--primary-border);
+    border-radius: 10px;
 
 }
 
@@ -408,6 +409,7 @@ h6,
 .dashboard-content-box {
     border: 1px solid var(--primary-border);
     padding: 10px;
+    border-radius: 10px;
 }
 
 .bg-light {
@@ -485,6 +487,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 10px;
+    border-radius: 10px;
 }
 
 .dashboard-stats-boxes .dashboard-stats .icon span {
@@ -515,6 +518,7 @@ body {
     border: 1px solid var(--primary-border);
     background: #514d4d99;
     font-style: italic;
+    border-radius: 10px;
 }
 
 .invitation-container {
@@ -524,7 +528,7 @@ body {
 
 .welcome-head {
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
 }
 
 .welcome-message {
@@ -545,4 +549,106 @@ body {
 .dropdown-item.active,
 .dropdown-item:active {
     background-color: var(--primary);
+}
+
+.with-draw-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.with-draw-box-inside {
+    border: 1px solid var(--primary);
+    padding: 3em;
+    margin-top: 5em;
+    margin-bottom: 5em;
+
+}
+
+.form-section-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input#purchase_amount {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #bbb5b5;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.25s;
+}
+
+input#purchase_amount:focus {
+    outline: 0;
+    background: rgb(111, 109, 109);
+
+}
+
+input#purchase_amount::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--primary);
+    opacity: 1;
+    /* Firefox */
+}
+
+input#purchase_amount:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--primary);
+
+}
+
+input#purchase_amount::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--primary);
+
+}
+
+.custom-input-group {
+    display: flex;
+}
+
+.custom-input-group:focus {
+    outline: 0;
+
+}
+
+/* 
+select#inputGroupSelect01 {
+    background: none;
+    color: white;
+    border: none;
+}
+
+select#inputGroupSelect01:focus {
+    outline: 0;
+} */
+
+.custom-box {
+    border: 1px solid var(--primary);
+    padding: 22px;
+    border-radius: 15px;
+}
+
+#power_get {
+    color: var(--primary);
+
+}
+
+table.custom-table {
+    width: 100%;
+    padding: 2em;
+    margin-top: 10px;
+    text-align: center;
+}
+
+table.custom-table tr th {
+    color: var(--primary);
+
+}
+
+table.custom-table tfoot {
+    background: var(--primary);
 }

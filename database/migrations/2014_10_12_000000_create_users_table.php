@@ -13,11 +13,38 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+
             $table->string('name');
+
+            $table->string('unique_user_id')->unique();  //should be unique
+
+            $table->unsignedBigInteger('ref_id')->nullable();
+            $table->foreign('ref_id')->references('id')->on('users');
+
             $table->string('email')->unique();
+
             $table->timestamp('email_verified_at')->nullable();
+
             $table->string('password');
+
+            $table->string('referral_commission_hash')->nullable();
+
+            $table->string('last_login_at')->nullable();
+
+            $table->string('status');
+
+            $table->string('balance')->nullable();
+
+            $table->string('currency')->default('USD');
+
+            $table->string('active_mining_power');
+
+            $table->string('active_mining_power_unit');
+
+            $table->text('bitcoin_address')->nullable();
+
             $table->rememberToken();
+
             $table->timestamps();
         });
     }

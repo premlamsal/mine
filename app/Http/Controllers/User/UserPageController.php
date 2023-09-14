@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,21 @@ class UserPageController extends Controller
     }
     public function purchase()
     {
-        return view('Pages/User/Purchase');
+        $purchases = Purchase::where('user_id', Auth::user()->id)->get();
+        $purchase_power = $purchases->sum('mining_power');
+        $purchase_power_unit = 'TH/s';
+        $purchase_total_cost = $purchases->sum('price');
+        $purchase_total_number = $purchases->count();
+
+
+        return view('Pages/User/Purchase')->with([
+            'purchases' => $purchases,
+            'purchase_power' => $purchase_power,
+            'purchase_power_unit' => $purchase_power_unit,
+            'purchase_total_cost' => $purchase_total_cost,
+            'purchase_total_cost_unit' => 'USD',
+            'purchase_total_number' => $purchase_total_number
+        ]);
     }
     public function withdraw()
     {

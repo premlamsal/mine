@@ -15,35 +15,42 @@
 
         /*PRICE COLOR CODE START*/
         #generic_price_table .generic_content {
-            background-color: #fff;
+            transition: transform 0.2s;
+            background-color: #02071f;
+            border: 1px solid var(--primary);
+            /* box-shadow: 1px 1px 5px 2px var(--primary); */
+
+
         }
 
         #generic_price_table .generic_content .generic_head_price {
-            background-color: #f6f6f6;
+            background-color: none;
+            /* background-color: #051147; */
+            border-bottom: 1px solid #eeeeee21;
         }
 
         #generic_price_table .generic_content .generic_head_price .generic_head_content .head_bg {
-            border-color: #e4e4e4 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #e4e4e4;
+            border-color: #0b153f rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #0b153f;
         }
 
         #generic_price_table .generic_content .generic_head_price .generic_head_content .head span {
-            color: #525252;
+            color: var(--primary);
         }
 
         #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .sign {
-            color: #414141;
+            color: #fff;
         }
 
         #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .currency {
-            color: #414141;
+            color: #fff;
         }
 
         #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .cent {
-            color: #414141;
+            color: #fff;
         }
 
         #generic_price_table .generic_content .generic_head_price .generic_price_tag .month {
-            color: #414141;
+            color: #fff;
         }
 
         #generic_price_table .generic_content .generic_feature_list ul li {
@@ -54,10 +61,11 @@
             color: #414141;
         }
 
-        #generic_price_table .generic_content .generic_feature_list ul li:hover {
-            background-color: #E4E4E4;
-            border-left: 5px solid var(--primary);
-        }
+        /* #generic_price_table .generic_content .generic_feature_list ul li:hover {
+                                                            background-color: var(--primary);
+                                                            color: #fff;
+                                                            border-left: 5px solid var(--primary);
+                                                        } */
 
         #generic_price_table .generic_content .generic_price_btn a {
             border: 1px solid var(--primary);
@@ -108,7 +116,7 @@
 
         #generic_price_table .generic_content .generic_head_price .generic_head_content .head_bg {
             border-style: solid;
-            border-width: 90px 1411px 23px 399px;
+            border-width: 131px 1422px 25px 409px;
             position: absolute;
         }
 
@@ -451,29 +459,43 @@
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container text-center">
             <div class="row justify-content-center">
+                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <h1 class="display-6 text-primary">Plans</h1>
+                    <p class="text-primary fs-5 mb-5">We are offering these plans</p>
+                </div>
                 <div class="col-lg-10">
-
-
                     <div id="generic_price_table">
                         <section>
-                            <div class="container">
+                            {{-- <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="price-heading clearfix">
-                                            <h1>Plans We have</h1>
+                                            <h1>Plans</h1>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="container">
                                 <div class="row">
                                     @foreach ($plans as $plan)
                                         <div class="col-md-4">
-                                            <div class="generic_content active clearfix">
+                                            <div class="generic_content clearfix">
                                                 <div class="generic_head_price clearfix">
                                                     <div class="generic_head_content clearfix">
-                                                        <div class="head_bg"></div>
+                                                        <div class="head_bg">
+
+                                                        </div>
+
+
                                                         <div class="head">
+                                                            <div class="miner-image-logo">
+
+                                                                <img src="{{ Storage::url('imger/' . $plan->miner->image) }}"
+                                                                    alt="{{ $plan->miner->miner_name }}"
+                                                                    style="width:40px;height:40px;border-radius:10px">
+                                                            </div>
+
+
                                                             <span>{{ $plan->title }}</span>
                                                         </div>
                                                     </div>
@@ -481,8 +503,9 @@
                                                         <span class="price">
                                                             <span class="sign">$</span>
                                                             <span class="currency">{{ $plan->price }}</span>
-                                                            {{-- <span class="cent">.99</span> --}}
-                                                            {{-- <span class="month">/MON</span> --}}
+                                                            {{-- <span class="cent">/</span> --}}
+                                                            <span class="month">/ {{ $plan->period }}
+                                                                {{ $plan->period_time }}</span>
                                                         </span>
                                                     </div>
                                                 </div>

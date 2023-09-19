@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Purchase;
+use App\Models\User;
+use App\Models\WithDraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,11 +42,24 @@ class UserPageController extends Controller
     }
     public function withdraw()
     {
-        return view('Pages/User/Withdraw');
+
+        $withdraws = WithDraw::where('user_id', Auth::user()->id)->get();
+
+        return view('Pages/User/Withdraw')->with([
+            'withdraws' => $withdraws,
+
+        ]);;
     }
     public function referral()
     {
-        return view('Pages/User/Referral');
+        // date, referred user,active mining power, level/bonus share, commission
+
+        $users = User::where('ref_id', Auth::user()->id)->get();
+
+        $total_referral = User::where('ref_id', Auth::user()->id)->get()->count();
+
+
+        return view('Pages/User/Referral')->with(['referrals' => $users, 'total_referral' => $total_referral]);
     }
     public function settings()
     {

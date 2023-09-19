@@ -152,7 +152,8 @@
 
                                                                     <div class="radio-button">
                                                                         <input type="radio" id="pay-with-btc"
-                                                                            name="payment_method" class="btc">
+                                                                            name="payment_method" class="btc"
+                                                                            value="btc">
                                                                         <label for="pay-with-btc">Pay with BTC</label>
                                                                     </div>
                                                                     <div class="radio-button">

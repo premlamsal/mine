@@ -14,6 +14,8 @@
                     <form method="POST" action="{{ route('register.custom') }}">
                         @csrf
 
+
+
                         @if (isset($user_name))
                             <div class="referral-information">
                                 <div class="referral-information mb-3">
@@ -46,7 +48,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <input type="text" placeholder="Bitcoin Address (Optional)" id="bitcoin_address"
-                                class="form-control" name="bitcoin_address" required>
+                                class="form-control" name="bitcoin_address">
                             @if ($errors->has('bitcoin_address'))
                                 <span class="text-danger">{{ $errors->first('bitcoin_address') }}</span>
                             @endif

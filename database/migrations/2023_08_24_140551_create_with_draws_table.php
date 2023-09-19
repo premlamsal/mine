@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('with_draws', function (Blueprint $table) {
             $table->id();
-            $table->string('transaction_number');
+            $table->string('transaction_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->text('wallet_address')->nullable();
             $table->text('amount');
-            $table->string('currency_type');
-            $table->string('status'); // initaialized, requested, approved, rejected
+            $table->string('currency');
+            $table->string('status'); // initaialized
             $table->timestamps();
         });
     }

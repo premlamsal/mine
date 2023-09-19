@@ -113,7 +113,7 @@
                                                     <div class="custom-input-group-prepend">
                                                         <input type="text" class="custom-form-control"
                                                             placeholder="Amount" name="purchase_amount" value="19.11"
-                                                            id="purchase_amount" disabled>
+                                                            id="purchase_amount">
 
                                                     </div>
                                                     <select class="custom-form-control" id="inputGroupSelect01"

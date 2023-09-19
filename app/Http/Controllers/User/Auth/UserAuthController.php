@@ -70,8 +70,13 @@ class UserAuthController extends Controller
         $user->status = 'active';
         $user->active_mining_power = 900;
         $user->active_mining_power_unit = 'TH/s';
+
+
         if (isset($data['ref_id'])) {
-            $user->ref_id = $data['ref_id'];
+
+            $user_id = User::where('unique_user_id', $data['ref_id'])->value('id');
+
+            $user->ref_id = $user_id;
         }
         if (isset($data['bitcoin_address'])) {
             $user->bitcoin_address = $data['bitcoin_address'];

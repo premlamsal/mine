@@ -124,37 +124,43 @@
 
                                                         </div>
 
-                                                        <div class="mt-5 mb-3">
-                                                            <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
+                                                        <form method="post" action="{{ route('user.withdraw.process') }}">
+                                                            @csrf
+                                                            <div class="mt-5 mb-3">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Amount" name="with_draw_amount">
+                                                                        @if ($errors->has('with_draw_amount'))
+                                                                            <div class="text-danger">
+                                                                                {{ $errors->first('with_draw_amount') }}
+                                                                            </div>
+                                                                        @endif
+                                                                    </div>
+                                                                    <select class="form-control" id="inputGroupSelect01"
+                                                                        name="currency">
+                                                                        <option value="btc">btc</option>
+                                                                        <option value="ltct">ltct</option>
+                                                                        <option value="usd">USD</option>
+                                                                        <option value="inr">INR</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="input-group">
                                                                     <input type="text" class="form-control"
-                                                                        placeholder="Amount" name="with_draw_amount">
-                                                                    @if ($errors->has('with_draw_amount'))
+                                                                        placeholder="Wallet Address"
+                                                                        name="wallet_address" />
+                                                                    @if ($errors->has('wallet_address'))
                                                                         <div class="text-danger">
-                                                                            {{ $errors->first('with_draw_amount') }}
-                                                                        </div>
+                                                                            {{ $errors->first('wallet_address') }}</div>
                                                                     @endif
                                                                 </div>
-                                                                <select class="form-control" id="inputGroupSelect01"
-                                                                    name="period_time">
-                                                                    <option value="day">BTC</option>
-                                                                    <option value="month">USDT</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Wallet Address" name="wallet_address" />
-                                                                @if ($errors->has('wallet_address'))
-                                                                    <div class="text-danger">
-                                                                        {{ $errors->first('wallet_address') }}</div>
-                                                                @endif
-                                                            </div>
-                                                            <div class="mt-5">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary">Withdraw</button>
+                                                                <div class="mt-5">
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Withdraw</button>
 
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
 
@@ -170,6 +176,34 @@
 
 
                             </div>
+
+                            <div class="withdraw-footer-table-container mt-4">
+                                <div class="withdraw-table">
+                                    <table>
+
+                                        <thead>
+                                            <tr>
+                                                <th> Date</th>
+                                                <th> Wallet Address</th>
+                                                <th> Amount</th>
+                                                <th> Currency</th>
+                                                <th> Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($withdraws as $withdraw)
+                                                <tr>
+                                                    <td data-label="Date">{{ $purchase->created_at }}</td>
+                                                    <td data-label="WithDraw Amount">{{ $purchase->amount }}</td>
+                                                    <td data-label="Wallet Address">{{ $purchase->wallet_address }}</td>
+                                                    <td data-label="Currency">{{ $purchase->currency_type }}</td>
+                                                    <td data-label="Status">{{ $purchase->status }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -177,3 +211,63 @@
         </div>
         <!-- 404 End -->
     @stop
+    @push('style')
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                border: 1px solid #333;
+                padding: 10px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #000;
+                color: #fff;
+            }
+
+            tr:nth-child(even) {
+                background-color: #222;
+            }
+
+            @media (max-width: 768px) {
+                table {
+                    border: 0;
+                }
+
+                table caption {
+                    font-size: 1.3em;
+                }
+
+                table thead {
+                    display: none;
+                }
+
+                table tr {
+                    margin-bottom: 10px;
+                    display: block;
+                    border: 1px solid #333;
+                }
+
+                table td {
+                    display: block;
+                    text-align: right;
+                    padding-left: 50%;
+                    position: relative;
+                }
+
+                table td::before {
+                    content: attr(data-label);
+                    position: absolute;
+                    left: 0;
+                    width: 50%;
+                    padding-left: 15px;
+                    font-weight: bold;
+                }
+            }
+        </style>
+    @endpush

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Custom\Helpers\CoinPaymentsAPI;
 use App\Models\Payment;
 use App\Models\Purchase;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,17 +75,18 @@ class UserPurchaseController extends Controller
 
 
             if ($result['error'] == "ok") {
-                $payment = new Payment();
-                $payment->email = $email;
-                $payment->entered_amount = $amount;
-                $payment->amount = $result['result']['amount'];
-                $payment->from_currency = $scurrency;
-                $payment->to_currency = $rcurrency;
-                $payment->status = "initialized";
-                $payment->gateway_id = $result['result']['txn_id'];
-                $payment->gateway_url = $result['result']['status_url'];
-                $payment->save();
-
+                $transaction = new Transaction();
+                $transaction->user_id = Auth::user()->id;
+                $transaction->email = $email;
+                $transaction->entered_amount = $amount;
+                $transaction->amount = $result['result']['amount'];
+                $transaction->from_currency = $scurrency;
+                $transaction->to_currency = $rcurrency;
+                $transaction->transaction_type = 'purchase';
+                $transaction->status = "initialized";
+                $transaction->gateway_id = $result['result']['txn_id'];
+                $transaction->gateway_url = $result['result']['status_url'];
+                $transaction->save();
 
                 return view('Pages.User.ConfirmPurchase')->with(['username' => $username, 'rcurrency' => $rcurrency, 'result' => $result]);
             } else {
@@ -145,16 +147,16 @@ class UserPurchaseController extends Controller
     {
         $merchant_id = "9f986714667d561c58ea16d9494cc04c";
         $ipn_secret = "pinnacle";
-        $debug_email = "pinnacleprem@gmail.com";
+        // $debug_email = "pinnacleprem@gmail.com";
 
         $txn_id = $request->input('txn_id');
-        $payment = Payment::where("gateway_id", $txn_id)->first();
-        $order_currency = $payment->to_currency; //BTC
-        $order_total = $payment->amount; //BTC
+        $transaction = Transaction::where("gateway_id", $txn_id)->first();
+        $order_currency = $transaction->to_currency; //BTC
+        $order_total = $transaction->amount; //BTC
 
         function edie($error_msg)
         {
-            global $debug_email;
+            $debug_email = "pinnacleprem@gmail.com";
             $report =  "ERROR : " . $error_msg . "\n\n";
             $report .= "POST DATA\n\n";
             foreach ($_POST as $key => $value) {
@@ -209,17 +211,120 @@ class UserPurchaseController extends Controller
 
         if ($status >= 100 || $status == 2) {
             // Payment is complete
-            $payment->status = "success";
-            $payment->save();
+            $transaction->status = "success";
+            if ($transaction->save()) {
+                $calculated_mining_power_for_purchase = (($amount1) * (1 / 3.05));
+                $calculated_mining_power_for_purchase = number_format($calculated_mining_power_for_purchase, 2, '.', '');
+                $calculated_mining_unit_for_purchase = 'TH/s';
+
+                $user = User::where('id', $transaction->user_id)->first();
+                $user->balance = $user->balance - $amount1;
+                $user->active_mining_power  = $user->active_mining_power + $calculated_mining_power_for_purchase;
+                $user->active_mining_power_unit = $calculated_mining_unit_for_purchase;
+                if ($user->save()) {
+                    $purchase = new Purchase();
+                    $purchase->transaction_id = $this->randomString();
+                    $purchase->payment_method = 'Coin Payment';
+                    $purchase->currency = $currency1;
+                    $purchase->mining_power = $calculated_mining_power_for_purchase;
+                    $purchase->mining_unit = $calculated_mining_unit_for_purchase;
+                    $purchase->price = $amount1;
+                    $purchase->user_id = $user->id;
+                    $purchase->status = $status;
+                    if ($purchase->save()) {
+                        //everthing is success
+                        edie('everthing is success');
+                    } else {
+                        //error saving purchase
+                        edie('everthing saving purchase');
+                    }
+                } else {
+                    //error saving user
+                    edie('everthing saving user');
+                }
+            } else {
+                //   error saving transaction
+                edie('everthing saving transaction');
+            }
         } else if ($status < 0) {
             // Payment Error
-            $payment->status = "error";
-            $payment->save();
+            $transaction->status = "error";
+            $transaction->save();
         } else {
             // Payment Pending
-            $payment->status = "pending";
-            $payment->save();
+            $transaction->status = "pending";
+            $transaction->save();
         }
         die("IPN OK");
+    }
+
+    public function processWithDrawal(Request $request)
+    {
+
+
+        $basicInfo = $this->coin->GetBasicProfile();
+
+        // var_dump($basicInfo);
+        $username = $basicInfo['result']['public_name'];
+
+        $amount = $request->input('with_draw_amount');
+
+        $address = $request->input('wallet_address');
+
+        // $email = $request->input('email');
+
+        $currency = $request->input('currency');
+
+        $auto_confirm = true;
+
+        $ipn_url = "http://localhost:8000/withdrawal-hook";
+
+
+
+        $result = $this->coin->CreateWithdrawal($amount, $currency, $address, $auto_confirm, $ipn_url);
+
+
+
+        if ($result['error'] == "ok") {
+            $transaction = new Transaction();
+            $transaction->status = "initialized";
+            $transaction->user_id = Auth::user()->id;
+            $transaction->user_id = Auth::user()->email;
+            $transaction->gateway_id = $result['result']['id'];
+            $transaction->status = $result['result']['status'];
+            $transaction->amount = $result['result']['amount'];
+            $transaction->transaction_type = 'withdraw';
+
+
+
+            if ($transaction->save()) {
+                //now deduct user balance 
+
+                $user = User::where('id', Auth::user()->id)->first();
+                $user->balance = $user->balance - $amount;
+
+                if ($user->save()) {
+
+
+                    return back()->with('message', 'Congrats you have successfully withdraw. You will shorly received cash out in your address.');
+
+
+                    // display success message
+                    // return view('Pages.Payment.ConfirmWithdraw')->with(['username' => $username, 'currency' => $currency, 'result' => $result]);
+                } else {
+                    //error while deducting balance from user wallet
+
+                }
+            } else {
+
+                //error while creating coinwithdrawl
+
+
+            }
+        } else {
+            return back()->with('error',  $result['error']);
+
+            die();
+        }
     }
 }

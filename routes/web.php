@@ -67,7 +67,6 @@ Route::name('user.')->prefix('user')->group(function () {
     //logged in user routes
 
     Route::get('/dashboard', [UserPageController::class, 'dashboard'])->name('dashboard');
-    Route::get('withdraw', [UserPageController::class, 'withdraw'])->name('withdraw');
     Route::get('referral', [UserPageController::class, 'referral'])->name('referral');
     Route::get('settings', [UserPageController::class, 'settings'])->name('settings');
 
@@ -82,6 +81,8 @@ Route::name('user.')->prefix('user')->group(function () {
 
 
 
+    Route::get('withdraw', [UserPageController::class, 'withdraw'])->name('withdraw');
+    Route::post('withdraw-process', [UserPurchaseController::class, 'processWithDrawal'])->name('withdraw.process');
 
 
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Custom\Helpers\CoinPaymentsAPI;
 use App\Models\CoinWithdrawal;
 use App\Models\Payment;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CoinPaymentController extends Controller
 {
@@ -172,32 +174,42 @@ class CoinPaymentController extends Controller
 
         $auto_confirm = true;
 
+        $ipn_url = "http://localhost:8000/withdrawal-hook";
 
-        $request = [
-            'amount' => $amount,
-            'currency' => $currency,
-            'address' => $address,
-            'auto_confirm' => $auto_confirm ? 1 : 0,
-            'ipn_url' => "http://localhost:8000/withdrawal-hook"   //callback url to make update status for the payment
-        ];
 
-        $result = $this->coin->CreateTransaction($request);
+
+        $result = $this->coin->CreateWithdrawal($amount, $currency, $address, $auto_confirm, $ipn_url);
 
 
 
         if ($result['error'] == "ok") {
             $withdraw = new CoinWithdrawal();
-            $withdraw->email = $email;
-            $withdraw->entered_amount = $amount;
-            $withdraw->amount = $result['result']['amount'];
-            $withdraw->currency = $currency;
             $withdraw->status = "initialized";
-            $withdraw->gateway_id = $result['result']['txn_id'];
-            $withdraw->gateway_url = $result['result']['status_url'];
-            $withdraw->save();
+            $withdraw->transaction_id = $result['result']['id'];
+            $withdraw->status = $result['result']['status'];
+            $withdraw->amount = $result['result']['amount'];
 
 
-            return view('Pages.Payment.ConfirmWithdraw')->with(['username' => $username, 'currency' => $currency, 'result' => $result]);
+            if ($withdraw->save()) {
+                //now deduct user balance 
+
+                $user = User::where('id', Auth::user()->id)->first();
+                $user->balance = $user->balance - $amount;
+
+                if ($user->save()) {
+
+                    // display success message
+                    // return view('Pages.Payment.ConfirmWithdraw')->with(['username' => $username, 'currency' => $currency, 'result' => $result]);
+                } else {
+                    //error while deducting balance from user wallet
+
+                }
+            } else {
+
+                //error while creating coinwithdrawl
+
+
+            }
         } else {
             print 'Error: ' . $result['error'] . "\n";
             die();

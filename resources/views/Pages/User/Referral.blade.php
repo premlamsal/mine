@@ -22,7 +22,7 @@
                                             Referral Power
 
                                         </div>
-                                        <div class="small-stats-body">0.00 KH/s</div>
+                                        <div class="small-stats-body">{{ auth()->user()->unique_user_id }}</div>
 
                                     </div>
 
@@ -33,7 +33,7 @@
                                     <div class="stats-holder">
 
                                         <div class="small-stats-title">Total Referral</div>
-                                        <div class="small-stats-body">400</div>
+                                        <div class="small-stats-body">{{ $total_referral }}</div>
 
                                     </div>
 
@@ -46,7 +46,7 @@
                                     <div class="stats-holder">
 
                                         <div class="small-stats-title">Referral Code</div>
-                                        <div class="small-stats-body">xyxankjknk</div>
+                                        <div class="small-stats-body">{{ auth()->user()->unique_user_id }}</div>
                                     </div>
 
                                 </div>
@@ -77,7 +77,7 @@
                                                 Invite you Friends:
                                             </div>
                                             <div class="referral-link">
-                                                http://localhost:8000/registration?ref={{ auth()->user()->unique_user_id }}
+                                                {{ url('') }}/registration?ref={{ auth()->user()->unique_user_id }}
                                             </div>
                                         </div>
                                     </div>
@@ -86,6 +86,43 @@
                                         <div class="col-lg-12">
                                             <div class="middle-box-container" style="margin-top: 4em">
                                                 <div class="middle-box-inside-box">
+
+                                                    <div class="referrals-footer-table-container mt-4">
+                                                        <div class="referrals-table">
+                                                            <table>
+
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th> Date</th>
+                                                                        <th> User Reffered</th>
+                                                                        <th> Mining Power</th>
+                                                                        <th> Mining Unit</th>
+                                                                        <th> Status</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($referrals as $referral)
+                                                                        <tr>
+                                                                            <td data-label="Date">
+                                                                                {{ $referral->created_at }}</td>
+                                                                            </td>
+                                                                            <td data-label="Referred User">
+                                                                                {{ $referral->name }}</td>
+                                                                            </td>
+
+                                                                            <td data-label="Mining Power">
+                                                                                {{ $referral->active_mining_power }}</td>
+                                                                            <td data-label="Mining Unit">
+                                                                                {{ $referral->active_mining_power_unit }}
+                                                                            </td>
+                                                                            <td data-label="Status">{{ $referral->status }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
 
 
                                                 </div>
@@ -110,3 +147,64 @@
     </div>
     <!-- 404 End -->
 @stop
+
+@push('style')
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #000;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                border: 0;
+            }
+
+            table caption {
+                font-size: 1.3em;
+            }
+
+            table thead {
+                display: none;
+            }
+
+            table tr {
+                margin-bottom: 10px;
+                display: block;
+                border: 1px solid #333;
+            }
+
+            table td {
+                display: block;
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 15px;
+                font-weight: bold;
+            }
+        }
+    </style>
+@endpush

@@ -22,7 +22,7 @@
                                             Referral Power
 
                                         </div>
-                                        <div class="small-stats-body">{{ auth()->user()->unique_user_id }}</div>
+                                        <div class="small-stats-body">{{ $total_referral_power }}</div>
 
                                     </div>
 
@@ -94,10 +94,9 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th> Date</th>
-                                                                        <th> User Reffered</th>
+                                                                        <th> User Referred</th>
                                                                         <th> Mining Power</th>
-                                                                        <th> Mining Unit</th>
-                                                                        <th> Status</th>
+                                                                        <th> Commission</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -107,15 +106,18 @@
                                                                                 {{ $referral->created_at }}</td>
                                                                             </td>
                                                                             <td data-label="Referred User">
-                                                                                {{ $referral->name }}</td>
+                                                                                {{ $referral->referredUser->name }}</td>
                                                                             </td>
 
                                                                             <td data-label="Mining Power">
-                                                                                {{ $referral->active_mining_power }}</td>
-                                                                            <td data-label="Mining Unit">
-                                                                                {{ $referral->active_mining_power_unit }}
+                                                                                {{ $referral->referral_purchased_power }}
+
+                                                                                {{ $referral->referral_purchased_power_unit }}
                                                                             </td>
-                                                                            <td data-label="Status">{{ $referral->status }}
+                                                                            <td data-label="Commission">
+
+                                                                                {{ $referral->referral_commision_power }}
+                                                                                {{ $referral->referral_commision_power_unit }}
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach

@@ -20,7 +20,7 @@
                                     <div class="stats-holder">
                                         <div class="small-stats-title">
                                             Mining Power
-
+                                            {{ \App\Custom\Helpers\CustomCurrency::prem() }}
                                         </div>
                                         <div class="small-stats-body">{{ auth()->user()->active_mining_power }}
                                             {{ auth()->user()->active_mining_power_unit }}</div>
@@ -34,8 +34,10 @@
                                     <div class="stats-holder">
 
                                         <div class="small-stats-title">Your Earning</div>
-                                        <div class="small-stats-body">{{ auth()->user()->balance }}
-                                            {{ auth()->user()->currency }}</div>
+                                        <div class="small-stats-body">
+                                            {{ \App\Custom\Helpers\CustomCurrency::convertCurrency(auth()->user()->balance, auth()->user()->currency, auth()->user()->active_currency) }}
+
+                                        </div>
 
                                     </div>
 
@@ -111,15 +113,19 @@
                                                 </div>
                                                 <div class="custom-input-group">
                                                     <div class="custom-input-group-prepend">
-                                                        <input type="text" class="custom-form-control"
-                                                            placeholder="Amount" name="purchase_amount" value="19.11"
+                                                        <input type="number" class="custom-form-control" step="0.0001"
+                                                            min="{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(19.11, 'usd', auth()->user()->active_currency) }}"
+                                                            placeholder="Amount" name="purchase_amount"
+                                                            value="{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(19.11, 'usd', auth()->user()->active_currency) }}"
                                                             id="purchase_amount">
 
                                                     </div>
                                                     <select class="custom-form-control" id="inputGroupSelect01"
                                                         name="period_time">
-                                                        <option value="usd">USD</option>
-                                                        <option value="ntc">BTC</option>
+                                                        <option value="{{ auth()->user()->active_currency }}">
+                                                            {{ auth()->user()->active_currency }}
+                                                        </option>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -142,7 +148,10 @@
                                                         <th>Unit Costs</th>
                                                         <th>1 TH/s</th>
                                                         {{-- you can fetch from api like usd to usd --}}
-                                                        <th>3.05 USD</th>
+                                                        <th>
+                                                            {{ \App\Custom\Helpers\CustomCurrency::convertCurrency(3.05, auth()->user()->currency, auth()->user()->active_currency) }}
+
+                                                        </th>
                                                     </tr>
                                                     <tr>
                                                         <td>Hourly Profit</td>
@@ -215,6 +224,18 @@
             let power_get = document.getElementById('power_get');
 
             let purchase_amount_val;
+            let curr =
+                "{{ \App\Custom\Helpers\CustomCurrency::convertCurrency(auth()->user()->balance, auth()->user()->currency, auth()->user()->active_currency) }}"
+            let USD_to_BTC_rate = 1; //1 default if there is no convertion for active currency
+            let check_currency = "{{ auth()->user()->active_currency }}"
+            if (check_currency === 'btc') {
+                USD_to_BTC_rate =
+                    "{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(1, 'USD', 'BTC') }}"
+            }
+            let temp = "{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(0.000703, 'btc', 'usd') }}";
+            console.log(temp);
+            //converting usd to btc we multiply usd* current rate btc
+
 
             let monthly_profit_usd = document.getElementById('monthly-profit-usd');
             let weekly_profit_usd = document.getElementById('weekly-profit-usd');
@@ -227,12 +248,13 @@
 
             // // console.log(purchase_amount_val)
             monthly_profit_usd.textContent = (purchase_amount_val * 4.5).toFixed(9); //405%
+
             weekly_profit_usd.textContent = (purchase_amount_val * 1.05).toFixed(9); //105%
             daily_profit_usd.textContent = (purchase_amount_val * 0.15).toFixed(9); //15%
             hourly_profit_usd.textContent = (purchase_amount_val * 0.00625).toFixed(9); //0.625%  
 
-            power_get.textContent = (purchase_amount_val * (1 / 3.05)).toFixed(2) + ' TH / s'
-
+            power_get.textContent = ((purchase_amount_val / USD_to_BTC_rate) * (1 / 3.05)).toFixed(3) + ' TH / s'
+            // console.log(purchase_amount_val / USD_to_BTC_rate);
             purchase_amount.addEventListener("input", (event) => {
 
                 purchase_amount_val = event.target.value;
@@ -241,10 +263,11 @@
                 monthly_profit_usd.textContent = (purchase_amount_val * 4.5).toFixed(9); //405%
                 weekly_profit_usd.textContent = (purchase_amount_val * 1.05).toFixed(9); //105%
                 daily_profit_usd.textContent = (purchase_amount_val * 0.15).toFixed(9); //15%
-                hourly_profit_usd.textContent = (purchase_amount_val * 0.00625.toFixed(9)); //0.625%
+                hourly_profit_usd.textContent = (purchase_amount_val * 0.00625).toFixed(9); //0.625%
                 // }
 
-                power_get.textContent = (purchase_amount_val * (1 / 3.05)).toFixed(2) + ' TH / s'
+                // power_get.textContent = (purchase_amount_val * (1 / 3.05)).toFixed(2) + ' TH / s'
+                power_get.textContent = ((purchase_amount_val / USD_to_BTC_rate) * (1 / 3.05)).toFixed(3) + ' TH / s'
 
 
             });

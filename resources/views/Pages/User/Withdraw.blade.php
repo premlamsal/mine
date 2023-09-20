@@ -119,8 +119,9 @@
                                                             Cash Out
                                                         </div>
                                                         <div class="mt-5">
-                                                            Your Earnings: {{ auth()->user()->balance }}
-                                                            {{ auth()->user()->currency }}
+                                                            Your Earnings:
+                                                            {{ \App\Custom\Helpers\CustomCurrency::convertCurrency(auth()->user()->balance, 'usd', auth()->user()->active_currency) }}
+
 
                                                         </div>
 
@@ -140,9 +141,6 @@
                                                                     <select class="form-control" id="inputGroupSelect01"
                                                                         name="currency">
                                                                         <option value="btc">btc</option>
-                                                                        <option value="ltct">ltct</option>
-                                                                        <option value="usd">USD</option>
-                                                                        <option value="inr">INR</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="input-group">

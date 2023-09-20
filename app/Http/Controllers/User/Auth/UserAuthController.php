@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Referral;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,17 +72,23 @@ class UserAuthController extends Controller
         $user->active_mining_power = 900;
         $user->active_mining_power_unit = 'TH/s';
 
-
-        if (isset($data['ref_id'])) {
-
-            $user_id = User::where('unique_user_id', $data['ref_id'])->value('id');
-
-            $user->ref_id = $user_id;
-        }
         if (isset($data['bitcoin_address'])) {
             $user->bitcoin_address = $data['bitcoin_address'];
         }
         $user->password = Hash::make($data['password']);
+
+        if (isset($data['ref_id'])) {
+
+            if ($user->save()) {
+                $user_id = User::where('unique_user_id', $data['ref_id'])->value('id');
+                $user->ref_id = $user_id;
+                $referral = new Referral();
+                $referral->referred_user_id = $user->id;
+                $referral->referring_user_id = $user->ref_id;
+                return $referral->save();
+            }
+        }
+
         return $user->save();
     }
 

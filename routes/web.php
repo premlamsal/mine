@@ -68,7 +68,11 @@ Route::name('user.')->prefix('user')->group(function () {
 
     Route::get('/dashboard', [UserPageController::class, 'dashboard'])->name('dashboard');
     Route::get('referral', [UserPageController::class, 'referral'])->name('referral');
+
     Route::get('settings', [UserPageController::class, 'settings'])->name('settings');
+
+    Route::post('update-settings', [UserPageController::class, 'updateSettings'])->name('update.settings');
+
 
 
 

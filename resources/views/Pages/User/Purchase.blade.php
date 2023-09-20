@@ -118,19 +118,29 @@
                                                             <div class="mb-3">
                                                                 <div class="input-group mb-3">
 
+
                                                                     <div class="price-input-container">
+
+
                                                                         <input type="number" class="price-input"
+                                                                            step="0.0001"
+                                                                            min="{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(19.11, 'usd', auth()->user()->active_currency) }}"
                                                                             placeholder="Enter price" name="purchase_amount"
-                                                                            id="purchase_amount" value="19.1">
+                                                                            id="purchase_amount"
+                                                                            value="{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(19.11, 'usd', auth()->user()->active_currency) }}">
+
+
+
                                                                         @if ($errors->has('purchase_amount'))
                                                                             <div class="text-danger">
                                                                                 {{ $errors->first('purchase_amount') }}
                                                                             </div>
                                                                         @endif
                                                                         <select class="currency-select" name="currency">
-                                                                            <option value="USD">USD</option>
-                                                                            <option value="NPR">NPR</option>
-                                                                            <option value="INR">INR</option>
+                                                                            <option
+                                                                                value="{{ auth()->user()->active_currency }}">
+                                                                                {{ auth()->user()->active_currency }}
+                                                                            </option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -175,8 +185,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mt-5">
-                                                                    Your Earnings: {{ auth()->user()->balance }}
-                                                                    {{ auth()->user()->currency }}
+                                                                    Your Earnings:
+                                                                    {{ \App\Custom\Helpers\CustomCurrency::convertCurrency(auth()->user()->balance, 'usd', auth()->user()->active_currency) }}
+
 
                                                                 </div>
 
@@ -360,20 +371,43 @@
             let power_get = document.getElementById('power_get');
 
 
+
+
             let purchase_amount_val;
+            let curr =
+                "{{ \App\Custom\Helpers\CustomCurrency::convertCurrency(auth()->user()->balance, auth()->user()->currency, auth()->user()->active_currency) }}"
+            let USD_to_BTC_rate = 1; //1 default if there is no convertion for active currency
+            let check_currency = "{{ auth()->user()->active_currency }}"
+            if (check_currency === 'btc') {
+                USD_to_BTC_rate =
+                    "{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(1, 'USD', 'BTC') }}"
+            }
+            let temp = "{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(0.000703, 'btc', 'usd') }}";
+            console.log(temp);
+            //converting usd to btc we multiply usd* current rate btc
+
+
+            // console.log(purchase_amount.value)
 
             purchase_amount_val = purchase_amount.value;
 
-            power_get.textContent = (purchase_amount_val * (1 / 3.05)).toFixed(2) + ' TH / s'
 
-
-            amount.addEventListener("input", (event) => {
+            power_get.textContent = ((purchase_amount_val / USD_to_BTC_rate) * (1 / 3.05)).toFixed(3) + ' TH / s'
+            // console.log(purchase_amount_val / USD_to_BTC_rate);
+            purchase_amount.addEventListener("input", (event) => {
 
                 purchase_amount_val = event.target.value;
-                power_get.textContent = (purchase_amount_val * (1 / 3.05)).toFixed(2) + ' TH / s'
+                // if (purchase_amount_val >= 0.000039) {
+                // console.log(purchase_amount_val)
+
+                // }
+
+                // power_get.textContent = (purchase_amount_val * (1 / 3.05)).toFixed(2) + ' TH / s'
+                power_get.textContent = ((purchase_amount_val / USD_to_BTC_rate) * (1 / 3.05)).toFixed(3) + ' TH / s'
 
 
             });
+
 
 
             // function getMessage() {

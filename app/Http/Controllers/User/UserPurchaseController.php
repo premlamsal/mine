@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Custom\Helpers\CoinPaymentsAPI;
+use App\Custom\Helpers\CustomCurrency;
 use App\Models\Payment;
 use App\Models\Purchase;
+use App\Models\Referral;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,6 +47,8 @@ class UserPurchaseController extends Controller
     public function purchaseProcess(Request $request)
     {
         //if purchase payment mthod is user earning
+
+
 
         if ($request->input('payment_method') === 'btc') {
 
@@ -98,13 +102,25 @@ class UserPurchaseController extends Controller
         elseif (($request->input('payment_method') === 'user_earning')) {
             // echo "user_earning";
 
-            if (Auth::user()->balance > $request->input('purchase_amount')) {
-                $calculated_mining_power_for_purchase = ($request->input('purchase_amount') * (1 / 3.05));
+            $purchase_amount_dollar = 0;
+            if (Auth::user()->active_currency === 'btc') {
+                //converting btc to dollar
+                $purchase_amount_dollar = CustomCurrency::convertCurrencyOne(1, 'usd', 'btc');
+                $purchase_amount_dollar =  $request->input('purchase_amount') / $purchase_amount_dollar;
+            } else {
+                $purchase_amount_dollar = $request->input('purchase_amount');
+            }
+
+
+            if (Auth::user()->balance > $purchase_amount_dollar) {
+
+                //
+                $calculated_mining_power_for_purchase = $purchase_amount_dollar * (1 / 3.05);
                 $calculated_mining_power_for_purchase = number_format($calculated_mining_power_for_purchase, 2, '.', '');
                 $calculated_mining_unit_for_purchase = 'TH/s';
 
                 $user = User::where('id', Auth::user()->id)->first();
-                $user->balance = $user->balance - $request->input('purchase_amount');
+                $user->balance = $user->balance - $purchase_amount_dollar;
                 $user->active_mining_power  = $user->active_mining_power + $calculated_mining_power_for_purchase;
                 $user->active_mining_power_unit = $calculated_mining_unit_for_purchase;
 
@@ -117,7 +133,7 @@ class UserPurchaseController extends Controller
                     $purchase->currency = 'USD';
                     $purchase->mining_power = $calculated_mining_power_for_purchase;
                     $purchase->mining_unit = $calculated_mining_unit_for_purchase;
-                    $purchase->price = $request->input('purchase_amount');
+                    $purchase->price = $purchase_amount_dollar;
                     $purchase->user_id = Auth::user()->id;
                     $purchase->status = 'success';
 
@@ -129,6 +145,9 @@ class UserPurchaseController extends Controller
                         //failed creating purchase
                         return back()->with('error', 'Failed creating purchase');
                     }
+
+
+                    //
                 } else {
                     //deducing failed 
                     return back()->with('error', 'Error while deducing user wallet balance for purchase');
@@ -232,8 +251,27 @@ class UserPurchaseController extends Controller
                     $purchase->user_id = $user->id;
                     $purchase->status = $status;
                     if ($purchase->save()) {
-                        //everthing is success
-                        edie('everthing is success');
+
+                        //checking if this user is referred user by anyone other if yes we have to assign commison to that user
+                        $check_if_ref_user = User::where('ref_id', $user->ref_id)->first();
+                        if ($check_if_ref_user) {
+                            $check_purchase_present = Purchase::where('user_id', $user->ref_id)->first();
+                            if (!$check_purchase_present) {
+                                //this is user first purchase and also a referrred user
+                                $referral =
+                                    Referral::where('referred_user_id', $user->id)
+                                    ->where('referring_user_id', $user->ref_id)->first();
+                                $referral->referral_purchased_power = $calculated_mining_power_for_purchase;
+                                $referral->referral_purchased_power_unit =  $calculated_mining_unit_for_purchase;
+                                $calculated_mining_power_commission_for_purchase = $calculated_mining_power_for_purchase * 0.02;
+                                $referral->referral_commision_power = number_format($calculated_mining_power_commission_for_purchase, 2, '.', '');
+                                $referral->referral_commision_power_unit = $calculated_mining_unit_for_purchase;
+                                if ($referral->save()) {
+                                    //everthing is success
+                                    edie('everthing is success');
+                                }
+                            }
+                        }
                     } else {
                         //error saving purchase
                         edie('everthing saving purchase');

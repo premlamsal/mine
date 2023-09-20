@@ -43,6 +43,8 @@ return new class extends Migration
 
             $table->text('bitcoin_address')->nullable();
 
+            $table->string('active_currency')->default('USD');
+
             $table->rememberToken();
 
             $table->timestamps();

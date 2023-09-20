@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Purchase;
+use App\Models\Referral;
 use App\Models\User;
 use App\Models\WithDraw;
 use Illuminate\Http\Request;
@@ -54,16 +55,31 @@ class UserPageController extends Controller
     {
         // date, referred user,active mining power, level/bonus share, commission
 
-        $users = User::where('ref_id', Auth::user()->id)->get();
+        $referrals = Referral::where('referring_user_id', Auth::user()->id)->with('referredUser')->get();
 
-        $total_referral = User::where('ref_id', Auth::user()->id)->get()->count();
+        $total_referral = $referrals->count();
 
+        $total_referral_power = $referrals->sum('referral_commision_power');
 
-        return view('Pages/User/Referral')->with(['referrals' => $users, 'total_referral' => $total_referral]);
+        return view('Pages/User/Referral')->with(['referrals' => $referrals, 'total_referral' => $total_referral, 'total_referral_power' => $total_referral_power]);
     }
     public function settings()
     {
         return view('Pages/User/Settings');
+    }
+    public function updateSettings(Request $request)
+    {
+        $active_currency_get = $request->input('active_currency');
+
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->active_currency = $active_currency_get;
+        if ($user->save()) {
+            //update success
+            return back()->with('message', 'Congrats you have successfully updated');
+        } else {
+            //update not success
+            return back()->with('error', 'Error while updaing.');
+        }
     }
     public function logoutother()
     {

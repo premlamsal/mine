@@ -37,17 +37,7 @@ return new class extends Migration
             $table->string('website_youtube_link')->nullable();
             $table->string('website_linkedin_link')->nullable();
 
-
-
-
-
-
-
-
-
-
-
-
+            $table->string('active_currency')->nullable();
 
             $table->timestamps();
         });

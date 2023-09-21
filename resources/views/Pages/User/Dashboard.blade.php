@@ -20,7 +20,7 @@
                                     <div class="stats-holder">
                                         <div class="small-stats-title">
                                             Mining Power
-                                            {{ \App\Custom\Helpers\CustomCurrency::prem() }}
+
                                         </div>
                                         <div class="small-stats-body">{{ auth()->user()->active_mining_power }}
                                             {{ auth()->user()->active_mining_power_unit }}</div>

@@ -49,6 +49,7 @@ class UserPurchaseController extends Controller
         //if purchase payment mthod is user earning
 
 
+        $purchase_amount_dollar = CustomCurrency::convertCurrencyOne(1, 'usd', 'btc');
 
         if ($request->input('payment_method') === 'btc') {
 
@@ -58,7 +59,12 @@ class UserPurchaseController extends Controller
             // var_dump($basicInfo);
             $username = $basicInfo['result']['public_name'];
 
-            $amount = $request->input('purchase_amount');
+            if (Auth::user()->active_currency === 'btc') {
+                $amount = $request->input('purchase_amount') / $purchase_amount_dollar;
+            } else {
+                $amount = $request->input('purchase_amount');
+            }
+
             $email = Auth::user()->email;
 
             $scurrency = "USD";
@@ -102,10 +108,10 @@ class UserPurchaseController extends Controller
         elseif (($request->input('payment_method') === 'user_earning')) {
             // echo "user_earning";
 
-            $purchase_amount_dollar = 0;
+            // $purchase_amount_dollar = 0;
             if (Auth::user()->active_currency === 'btc') {
                 //converting btc to dollar
-                $purchase_amount_dollar = CustomCurrency::convertCurrencyOne(1, 'usd', 'btc');
+
                 $purchase_amount_dollar =  $request->input('purchase_amount') / $purchase_amount_dollar;
             } else {
                 $purchase_amount_dollar = $request->input('purchase_amount');

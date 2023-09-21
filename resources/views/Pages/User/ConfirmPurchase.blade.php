@@ -29,9 +29,25 @@
                                             <h1 style="color:var(--primary)">{{ $result['result']['amount'] }}
                                                 {{ $rcurrency }}</h1>
                                             <hr>
+
+                                            <div class="pay-to">
+                                                <label>
+                                                    Tranfer {{ $result['result']['amount'] }} {{ $rcurrency }}bitcoin to
+                                                    following BITCOIN
+                                                    ADDRESS
+                                                </label>
+                                                <div class="para text-primary">
+                                                    {{ $result['result']['address'] }}
+                                                </div>
+
+
+                                            </div>
+
+                                            <hr>
+
                                             <a href="{{ $result['result']['status_url'] }}"
                                                 class="btn btn-primary btn-block" style="color: white">Pay
-                                                Now</a>
+                                                Now with External Link</a>
                                         </form>
                                     </div>
 

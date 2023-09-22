@@ -24,7 +24,7 @@ class CustomCurrency
             $cal_val = number_format($cal_val, 8, '.', '');
         } elseif ($from_currency == 'btc' && $to_currency == 'usd') {
             $cal_val = $amount / $val_exchange_rate_one_usd_to_btc;
-            $cal_val = number_format($cal_val, 8, '.', '');
+            $cal_val = number_format($cal_val, 2, '.', '');
         } elseif ($from_currency === 'usd' && $to_currency === 'usd') {
             $cal_val = $amount;
             // $cal_val = number_format($cal_val, 8, '.', '');
@@ -76,7 +76,7 @@ class CustomCurrency
             $cal_val = number_format($cal_val, 8, '.', '');
         } elseif ($from_currency === 'btc' && $to_currency === 'usd') {
             $cal_val = $amount / $val_exchange_rate_one_usd_to_btc;
-            $cal_val = number_format($cal_val, 8, '.', '');
+            $cal_val = number_format($cal_val, 2, '.', '');
         } elseif ($from_currency === 'usd' && $to_currency === 'usd') {
             $cal_val = $amount;
             // $cal_val = number_format($cal_val, 8, '.', '');

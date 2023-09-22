@@ -73,7 +73,8 @@
                                         Invite you Friends:
                                     </div>
                                     <div class="referral-link">
-                                        http://localhost:8000/registration?ref={{ auth()->user()->unique_user_id }}
+                                        {{ url('') }}/registration?ref={{ auth()->user()->unique_user_id }}
+
                                     </div>
                                 </div>
                             </div>

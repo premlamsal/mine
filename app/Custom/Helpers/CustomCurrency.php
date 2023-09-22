@@ -14,8 +14,10 @@ class CustomCurrency
     {
 
 
-        $coin_payment_instance = new CoinPaymentController();
-        $val_exchange_rate_one_usd_to_btc = $coin_payment_instance->getRates();
+        // $coin_payment_instance = new CoinPaymentController();
+        // $val_exchange_rate_one_usd_to_btc = $coin_payment_instance->getRates();
+        $val_exchange_rate_one_usd_to_btc = 0.000037;
+
 
         //this $val will get current exchage rate from 1 usd equal to certain btc
 
@@ -27,13 +29,13 @@ class CustomCurrency
             $cal_val = number_format($cal_val, 2, '.', '');
         } elseif ($from_currency === 'usd' && $to_currency === 'usd') {
             $cal_val = $amount;
-            // $cal_val = number_format($cal_val, 8, '.', '');
+            $cal_val = number_format($cal_val, 2, '.', '');
         } else {
             return 0;
         }
 
 
-        return $cal_val . " " . $to_currency;
+        return $cal_val . " " . strtoupper($to_currency);
 
 
 
@@ -65,9 +67,9 @@ class CustomCurrency
         // return $val;
 
 
-        $coin_payment_instance = new CoinPaymentController();
-        $val_exchange_rate_one_usd_to_btc = $coin_payment_instance->getRates();
-
+        // $coin_payment_instance = new CoinPaymentController();
+        // $val_exchange_rate_one_usd_to_btc = $coin_payment_instance->getRates();
+        $val_exchange_rate_one_usd_to_btc = 0.000037;
 
         //this $val will get current exchage rate from 1 usd equal to certain btc
 
@@ -79,6 +81,7 @@ class CustomCurrency
             $cal_val = number_format($cal_val, 2, '.', '');
         } elseif ($from_currency === 'usd' && $to_currency === 'usd') {
             $cal_val = $amount;
+            $cal_val = number_format($cal_val, 2, '.', '');
             // $cal_val = number_format($cal_val, 8, '.', '');
         } else {
             return 0;

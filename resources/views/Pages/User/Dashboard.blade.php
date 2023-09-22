@@ -49,7 +49,7 @@
                                     <div class="stats-holder">
 
                                         <div class="small-stats-title">Purchase Power</div>
-                                        <div class="small-stats-body">6.00 TH/s</div>
+                                        <div class="small-stats-body">{{ $purchase_power }} {{ $purchase_power_unit }}</div>
 
                                     </div>
 
@@ -61,7 +61,8 @@
                                     <div class="stats-holder">
 
                                         <div class="small-stats-title">Referral Power</div>
-                                        <div class="small-stats-body">0.00 KH/s</div>
+                                        <div class="small-stats-body">{{ $total_referral_power }}
+                                            {{ $total_referral_power_unit }}</div>
                                     </div>
 
                                 </div>
@@ -73,7 +74,11 @@
                                         Invite you Friends:
                                     </div>
                                     <div class="referral-link">
+
                                         {{ url('') }}/registration?ref={{ auth()->user()->unique_user_id }}
+
+                                    </div>
+                                    <div class="referral-btn">
 
                                     </div>
                                 </div>

@@ -19,7 +19,28 @@ class UserPageController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('Pages/User/Dashboard');
+            $purchases = Purchase::where('user_id', Auth::user()->id)->get();
+
+            $purchase_power = $purchases->sum('mining_power');
+
+            $purchase_power_unit = 'TH/s';
+
+            $referrals = Referral::where('referring_user_id', Auth::user()->id)->with('referredUser')->get();
+
+            $total_referral = $referrals->count();
+
+            $total_referral_power = $referrals->sum('referral_commision_power');
+
+            $total_referral_power_unit = 'TH/s';
+
+            return view('Pages/User/Dashboard')->with([
+                'purchase_power' => $purchase_power,
+                'purchase_power_unit' => $purchase_power_unit,
+                'total_referral' => $total_referral,
+                'total_referral_power' => $total_referral_power,
+                'total_referral_power_unit' => $total_referral_power_unit,
+
+            ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }
@@ -36,7 +57,7 @@ class UserPageController extends Controller
             'purchases' => $purchases,
             'purchase_power' => $purchase_power,
             'purchase_power_unit' => $purchase_power_unit,
-            'purchase_total_cost' => $purchase_total_cost,
+            'purchase_total_cost' => number_format($purchase_total_cost, 2, '.', ''),
             'purchase_total_cost_unit' => 'USD',
             'purchase_total_number' => $purchase_total_number
         ]);
@@ -46,8 +67,14 @@ class UserPageController extends Controller
 
         $withdraws = WithDraw::where('user_id', Auth::user()->id)->get();
 
+        $withdraws_total_amount = $withdraws->sum('amount');
+        $withdraws_total = $withdraws->count();
+
+
         return view('Pages/User/Withdraw')->with([
             'withdraws' => $withdraws,
+            'withdraws_total' => $withdraws_total,
+            'withdraws_total_amount' => $withdraws_total_amount,
 
         ]);;
     }

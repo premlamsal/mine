@@ -34,7 +34,9 @@
                                     <div class="stats-holder">
 
                                         <div class="small-stats-title">Total Paid Out</div>
-                                        <div class="small-stats-body">0.000000 BTC</div>
+                                        <div class="small-stats-body">
+                                            {{ \App\Custom\Helpers\CustomCurrency::convertCurrency($withdraws_total_amount, auth()->user()->currency, auth()->user()->active_currency) }}
+                                        </div>
 
                                     </div>
 
@@ -47,7 +49,7 @@
                                     <div class="stats-holder">
 
                                         <div class="small-stats-title">No. of Payouts</div>
-                                        <div class="small-stats-body">1</div>
+                                        <div class="small-stats-body">{{ $withdraws_total }}</div>
                                     </div>
 
                                 </div>

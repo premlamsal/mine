@@ -101,6 +101,10 @@ Route::name('user.')->prefix('user')->group(function () {
 
 
 
+Route::get('rates', [CoinPaymentController::class, 'getRates'])->name('rates');
+
+
+
 // testing coin payment coin payment
 
 Route::get('payment', [CoinPaymentController::class, 'payment'])->name('payment');

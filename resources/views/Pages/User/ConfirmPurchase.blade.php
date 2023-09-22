@@ -32,7 +32,7 @@
 
                                             <div class="pay-to">
                                                 <label>
-                                                    Tranfer {{ $result['result']['amount'] }} {{ $rcurrency }}bitcoin to
+                                                    Tranfer {{ $result['result']['amount'] }} {{ $rcurrency }} to
                                                     following BITCOIN
                                                     ADDRESS
                                                 </label>

@@ -220,4 +220,13 @@ class CoinPaymentController extends Controller
     public function withDrawalHook()
     {
     }
+
+    public function getRates()
+    {
+        // $basicInfo = $this->coin->GetBasicProfile();
+        $result = $this->coin->GetRates();
+
+        $res = $result['result']['USD'];
+        return $res['rate_btc'];
+    }
 }

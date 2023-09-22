@@ -149,7 +149,7 @@
                                                         <th>1 TH/s</th>
                                                         {{-- you can fetch from api like usd to usd --}}
                                                         <th>
-                                                            {{ \App\Custom\Helpers\CustomCurrency::convertCurrency(3.05, auth()->user()->currency, auth()->user()->active_currency) }}
+                                                            {{ \App\Custom\Helpers\CustomCurrency::convertCurrency(3.05, 'usd', auth()->user()->active_currency) }}
 
                                                         </th>
                                                     </tr>
@@ -230,7 +230,7 @@
             let check_currency = "{{ auth()->user()->active_currency }}"
             if (check_currency === 'btc') {
                 USD_to_BTC_rate =
-                    "{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(1, 'USD', 'BTC') }}"
+                    "{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(1, 'usd', 'btc') }}"
             }
             let temp = "{{ \App\Custom\Helpers\CustomCurrency::convertCurrencyOne(0.000703, 'btc', 'usd') }}";
             console.log(temp);

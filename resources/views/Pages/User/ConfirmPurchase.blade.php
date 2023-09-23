@@ -45,9 +45,9 @@
 
                                             <hr>
 
-                                            <a href="{{ $result['result']['status_url'] }}"
+                                            {{-- <a href="{{ $result['result']['status_url'] }}"
                                                 class="btn btn-primary btn-block" style="color: white">Pay
-                                                Now with External Link</a>
+                                                Now with External Link</a> --}}
                                         </form>
                                     </div>
 
